@@ -1,0 +1,24 @@
+{
+  "name": "spryker-eco/fact-finder-ng",
+  "autoload": {
+    "psr-0": {
+      "SprykerEco": "src/",
+      "SprykerEcoTest": "tests/"
+    }
+  },
+  "require": {
+    "spryker-eco/fact-finder-sdk": "^1.0",
+  },
+  "description": "FactFinderNg module",
+  "license": "Apache-2.0",
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "extra": {
+    "branch-alias": {
+      "dev-master": "1.0.x-dev"
+    }
+  },
+  "config": {
+    "sort-packages": true
+  },
+}

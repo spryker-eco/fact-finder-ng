@@ -1,0 +1,14 @@
+environment:
+    php:
+        version: 7.1
+
+checks:
+    php:
+        code_rating: true
+
+filter:
+    excluded_paths:
+        - config/*
+        - tests/*
+        - src/Generated/*
+        - src/Pyz/*
