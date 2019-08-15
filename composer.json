@@ -7,7 +7,7 @@
     }
   },
   "require": {
-    "spryker-eco/fact-finder-sdk": "^1.0",
+    "spryker-eco/fact-finder-sdk": "^1.0"
   },
   "description": "FactFinderNg module",
   "license": "Apache-2.0",
@@ -20,5 +20,5 @@
   },
   "config": {
     "sort-packages": true
-  },
+  }
 }
