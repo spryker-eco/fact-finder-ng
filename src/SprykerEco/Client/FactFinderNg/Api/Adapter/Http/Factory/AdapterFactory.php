@@ -11,6 +11,7 @@ use GuzzleHttp\ClientInterface;
 use SprykerEco\Client\FactFinderNg\Api\Adapter\FactFinderNgAdapterInterface;
 use SprykerEco\Client\FactFinderNg\Api\Adapter\Http\FactFinderNgSearchAdapter;
 use SprykerEco\Client\FactFinderNg\Api\Adapter\Http\FactFinderNgSuggestAdapter;
+use SprykerEco\Client\FactFinderNg\Api\Adapter\Http\FactFinderNgTrackCheckoutAdapter;
 use SprykerEco\Client\FactFinderNg\Dependency\Service\FactFinderNgToUtilEncodingServiceInterface;
 use SprykerEco\Client\FactFinderNg\FactFinderNgConfig;
 
@@ -64,6 +65,18 @@ class AdapterFactory implements AdapterFactoryInterface
     public function createFactFinderNgSuggestionAdapter(): FactFinderNgAdapterInterface
     {
         return new FactFinderNgSuggestAdapter(
+            $this->client,
+            $this->utilEncodingService,
+            $this->config
+        );
+    }
+
+    /**
+     * @return FactFinderNgAdapterInterface
+     */
+    public function createFactFinderNgTrackCheckoutApiAdapter(): FactFinderNgAdapterInterface
+    {
+        return new FactFinderNgTrackCheckoutAdapter(
             $this->client,
             $this->utilEncodingService,
             $this->config

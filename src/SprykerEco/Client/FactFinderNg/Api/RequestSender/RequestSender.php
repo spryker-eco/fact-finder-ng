@@ -10,6 +10,7 @@ namespace SprykerEco\Client\FactFinderNg\Api\RequestSender;
 use Elastica\Query;
 use Generated\Shared\Transfer\FactFinderNgSearchResponseTransfer;
 use Generated\Shared\Transfer\FactFinderNgSuggestionResponseTransfer;
+use Generated\Shared\Transfer\FactFinderNgTrackCheckoutResponseTransfer;
 use SprykerEco\Client\FactFinderNg\Api\Adapter\Http\Factory\AdapterFactoryInterface;
 use SprykerEco\Client\FactFinderNg\Mapper\Request\FactFinderNgRequestMapperInterface;
 use SprykerEco\Client\FactFinderNg\Parser\FactFinderNgResponseParserInterface;
@@ -76,5 +77,21 @@ class RequestSender implements RequestSenderInterface
             ->sendRequest($requestTransfer);
 
         return $this->responseParser->parseSuggestionResponse($responseTransfer);
+    }
+
+    /**
+     * @param Query $query
+     * @param array $requestParameters
+     *
+     * @return FactFinderNgTrackCheckoutResponseTransfer
+     */
+    public function sendTrackCheckoutRequest(Query $query, array $requestParameters): FactFinderNgTrackCheckoutResponseTransfer
+    {
+        $requestTransfer = $this->mapper->mapTrackCheckoutRequest($requestParameters);
+        $responseTransfer = $this->adapterFactory
+            ->createFactFinderNgTrackCheckoutApiAdapter()
+            ->sendRequest($requestTransfer);
+
+        return $this->responseParser->parseTrackCheckoutResponse($responseTransfer);
     }
 }

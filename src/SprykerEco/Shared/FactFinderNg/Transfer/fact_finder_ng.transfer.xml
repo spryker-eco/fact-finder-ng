@@ -25,4 +25,8 @@
     <transfer name="FactFinderNgSuggestionResponse">
         <property name="body" type="array" />
     </transfer>
+
+    <transfer name="FactFinderNgTrackCheckoutResponse">
+        <property name="body" type="array" />
+    </transfer>
 </transfers>

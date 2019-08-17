@@ -23,6 +23,9 @@ abstract class FactFinderAbstractAdapter implements FactFinderNgAdapterInterface
     protected const HEADER_VALUE_APPLICATION_JSON = 'application/json';
 
     protected const FACT_FINDER_URL_BASE = 'http://mytheresa-ng.fact-finder.de/FACT-Finder';
+    protected const FACT_FINDER_URL_TYPE_URL = 'rest';
+    protected const FACT_FINDER_URL_VERSION = 'v2';
+    protected const FACT_FINDER_URL_TRACK = 'track';
 
     /**
      * @var \GuzzleHttp\ClientInterface

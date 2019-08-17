@@ -20,4 +20,9 @@ interface AdapterFactoryInterface
      * @return \SprykerEco\Client\FactFinderNg\Api\Adapter\FactFinderNgAdapterInterface
      */
     public function createFactFinderNgSuggestionAdapter(): FactFinderNgAdapterInterface;
+
+    /**
+     * @return FactFinderNgAdapterInterface
+     */
+    public function createFactFinderNgTrackCheckoutApiAdapter(): FactFinderNgAdapterInterface;
 }
