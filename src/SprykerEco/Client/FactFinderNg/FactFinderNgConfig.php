@@ -7,7 +7,7 @@
 
 namespace SprykerEco\Client\FactFinderNg;
 
-use Pyz\Shared\FactFinderNg\FactFinderNgConstants;
+use SprykerEco\Shared\FactFinderNg\FactFinderNgConstants;
 use Spryker\Client\Kernel\AbstractBundleConfig;
 
 class FactFinderNgConfig extends AbstractBundleConfig

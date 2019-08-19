@@ -7,7 +7,7 @@
 
 namespace SprykerEco\Client\FactFinderNg\Plugin;
 
-use SprykerEco\Client\Search\Plugin\SearchHandlerPluginInterface;
+use Pyz\Client\Search\Plugin\SearchHandlerPluginInterface;
 use Spryker\Client\Kernel\AbstractPlugin;
 use Spryker\Client\Search\Dependency\Plugin\QueryInterface;
 
