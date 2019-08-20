@@ -7,15 +7,32 @@
         <property name="payload" type="array" />
     </transfer>
 
+    <transfer name="TrackCheckoutRequest">
+        <property name="events" type="CartOrCheckoutEvent[]" singular="event" />
+    </transfer>
+
+    <transfer name="CartOrCheckoutEvent">
+        <property name="campaign" type="string" />
+        <property name="count" type="integer" />
+        <property name="id" type="string" />
+        <property name="masterId" type="string" />
+        <property name="price" type="integer" />
+        <property name="sid" type="string" />
+        <property name="title" type="string" />
+        <property name="userId" type="string" />
+    </transfer>
+
     <transfer name="FactFinderNgResponse">
+        <property name="isSuccess" type="bool" />
         <property name="error" type="FactFinderNgResponseError" />
         <property name="body" type="array" />
     </transfer>
 
     <transfer name="FactFinderNgResponseError">
         <property name="statusCode" type="int" />
-        <property name="errorCode" type="string" />
-        <property name="errorMessage" type="string" />
+        <property name="error" type="string" />
+        <property name="errorDescription" type="string" />
+        <property name="stacktrace" type="string" />
     </transfer>
 
     <transfer name="FactFinderNgSearchResponse">

@@ -11,6 +11,7 @@ use Elastica\Query;
 use Generated\Shared\Transfer\FactFinderNgSearchResponseTransfer;
 use Generated\Shared\Transfer\FactFinderNgSuggestionResponseTransfer;
 use Generated\Shared\Transfer\FactFinderNgTrackCheckoutResponseTransfer;
+use Generated\Shared\Transfer\TrackCheckoutRequestTransfer;
 
 interface RequestSenderInterface
 {
@@ -31,10 +32,9 @@ interface RequestSenderInterface
     public function sendSuggestionRequest(Query $query, array $requestParameters): FactFinderNgSuggestionResponseTransfer;
 
     /**
-     * @param Query $query
-     * @param array $requestParameters
+     * @param TrackCheckoutRequestTransfer $trackCheckoutRequestTransfer
      *
      * @return FactFinderNgTrackCheckoutResponseTransfer
      */
-    public function sendTrackCheckoutRequest(Query $query, array $requestParameters): FactFinderNgTrackCheckoutResponseTransfer;
+    public function sendTrackCheckoutRequest(TrackCheckoutRequestTransfer $trackCheckoutRequestTransfer): FactFinderNgTrackCheckoutResponseTransfer;
 }

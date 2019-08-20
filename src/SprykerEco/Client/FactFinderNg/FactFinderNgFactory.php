@@ -22,8 +22,10 @@ use SprykerEco\Client\FactFinderNg\Mapper\Elastica\FactFinderNgSuggestToElastica
 use SprykerEco\Client\FactFinderNg\Mapper\Elastica\FactFinderToElasticaMapperInterface;
 use SprykerEco\Client\FactFinderNg\Mapper\Request\FactFinderNgRequestMapper;
 use SprykerEco\Client\FactFinderNg\Mapper\Request\FactFinderNgRequestMapperInterface;
-use SprykerEco\Client\FactFinderNg\Parser\FactFinderNgResponseParser;
-use SprykerEco\Client\FactFinderNg\Parser\FactFinderNgResponseParserInterface;
+use SprykerEco\Client\FactFinderNg\Mapper\Request\Track\TrackApiRequestMapper;
+use SprykerEco\Client\FactFinderNg\Mapper\Request\Track\TrackApiRequestMapperInterface;
+use SprykerEco\Client\FactFinderNg\Parser\ResponseParser;
+use SprykerEco\Client\FactFinderNg\Parser\ResponseParserInterface;
 use Spryker\Client\Kernel\AbstractFactory;
 use Spryker\Client\Locale\LocaleClientInterface;
 use Spryker\Client\PriceProductStorage\PriceProductStorageClientInterface;
@@ -31,6 +33,7 @@ use Spryker\Client\ProductImageStorage\ProductImageStorageClientInterface;
 use Spryker\Client\ProductStorage\ProductStorageClientInterface;
 use Spryker\Client\Search\Model\Handler\SearchHandlerInterface;
 use Spryker\Client\Store\StoreClientInterface;
+use SprykerEco\Client\FactFinderNg\Processor\TrackCheckoutProcessor;
 
 /**
  * @method \SprykerEco\Client\FactFinderNg\FactFinderNgConfig getConfig()
@@ -86,11 +89,11 @@ class FactFinderNgFactory extends AbstractFactory
     }
 
     /**
-     * @return \SprykerEco\Client\FactFinderNg\Parser\FactFinderNgResponseParserInterface
+     * @return \SprykerEco\Client\FactFinderNg\Parser\ResponseParserInterface
      */
-    public function createResponseParser(): FactFinderNgResponseParserInterface
+    public function createResponseParser(): ResponseParserInterface
     {
-        return new FactFinderNgResponseParser();
+        return new ResponseParser();
     }
 
     /**
@@ -191,5 +194,25 @@ class FactFinderNgFactory extends AbstractFactory
     public function getStoreClient(): StoreClientInterface
     {
         return $this->getProvidedDependency(FactFinderNgDependencyProvider::CLIENT_STORE);
+    }
+
+    /**
+     * @return TrackApiRequestMapperInterface
+     */
+    public function createTrackApiRequestMapper(): TrackApiRequestMapperInterface
+    {
+        return new TrackApiRequestMapper();
+    }
+
+    /**
+     * @return TrackCheckoutProcessor
+     */
+    public function createTrackCheckoutProcessor(): TrackCheckoutProcessor
+    {
+        return new TrackCheckoutProcessor(
+            $this->createTrackApiRequestMapper(),
+            $this->createAdapterFactory(),
+            $this->createResponseParser()
+        );
     }
 }

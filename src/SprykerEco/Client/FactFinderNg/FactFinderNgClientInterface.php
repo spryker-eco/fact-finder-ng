@@ -7,6 +7,8 @@
 
 namespace SprykerEco\Client\FactFinderNg;
 
+use Generated\Shared\Transfer\FactFinderNgResponseTransfer;
+use Generated\Shared\Transfer\QuoteTransfer;
 use Spryker\Client\Search\Dependency\Plugin\QueryInterface;
 
 interface FactFinderNgClientInterface
@@ -40,4 +42,16 @@ interface FactFinderNgClientInterface
      * @return array|\Elastica\ResultSet
      */
     public function suggest(QueryInterface $searchQuery, array $resultFormatters = [], array $requestParameters = []);
+
+    /**
+     * Specification:
+     * - Method send request to Fact finder for tracking checkout completed event.
+     *
+     * @api
+     *
+     * @param QuoteTransfer $quoteTransfer
+     *
+     * @return FactFinderNgResponseTransfer
+     */
+    public function trackCheckout(QuoteTransfer $quoteTransfer): FactFinderNgResponseTransfer;
 }

@@ -7,15 +7,15 @@
 
 namespace SprykerEco\Client\FactFinderNg\Api\Adapter;
 
-use Generated\Shared\Transfer\FactFinderNgRequestTransfer;
-use Generated\Shared\Transfer\FactFinderNgResponseTransfer;
+use Psr\Http\Message\ResponseInterface;
+use Spryker\Shared\Kernel\Transfer\AbstractTransfer;
 
 interface FactFinderNgAdapterInterface
 {
     /**
-     * @param \Generated\Shared\Transfer\FactFinderNgRequestTransfer $factFinderNgRequestTransfer
+     * @param AbstractTransfer $factFinderNgRequestTransfer
      *
-     * @return \Generated\Shared\Transfer\FactFinderNgResponseTransfer
+     * @return ResponseInterface
      */
-    public function sendRequest(FactFinderNgRequestTransfer $factFinderNgRequestTransfer): FactFinderNgResponseTransfer;
+    public function sendRequest(AbstractTransfer $factFinderNgRequestTransfer): ResponseInterface;
 }

@@ -7,6 +7,8 @@
 
 namespace SprykerEco\Client\FactFinderNg;
 
+use Generated\Shared\Transfer\FactFinderNgResponseTransfer;
+use Generated\Shared\Transfer\QuoteTransfer;
 use Spryker\Client\Kernel\AbstractClient;
 use Spryker\Client\Search\Dependency\Plugin\QueryInterface;
 
@@ -45,5 +47,19 @@ class FactFinderNgClient extends AbstractClient implements FactFinderNgClientInt
     public function suggest(QueryInterface $searchQuery, array $resultFormatters = [], array $requestParameters = [])
     {
         return $this->getFactory()->createSuggestHandler()->search($searchQuery, $resultFormatters, $requestParameters);
+    }
+
+    /**
+     * {@inheritdoc}
+     *
+     * @api
+     *
+     * @param QuoteTransfer $quoteTransfer
+     *
+     * @return FactFinderNgResponseTransfer
+     */
+    public function trackCheckout(QuoteTransfer $quoteTransfer): FactFinderNgResponseTransfer
+    {
+        return $this->getFactory()->createTrackCheckoutProcessor()->processApiRequest($quoteTransfer);
     }
 }

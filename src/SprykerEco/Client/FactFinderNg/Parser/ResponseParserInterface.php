@@ -11,8 +11,9 @@ use Generated\Shared\Transfer\FactFinderNgResponseTransfer;
 use Generated\Shared\Transfer\FactFinderNgSearchResponseTransfer;
 use Generated\Shared\Transfer\FactFinderNgSuggestionResponseTransfer;
 use Generated\Shared\Transfer\FactFinderNgTrackCheckoutResponseTransfer;
+use Psr\Http\Message\ResponseInterface;
 
-interface FactFinderNgResponseParserInterface
+interface ResponseParserInterface
 {
     /**
      * @param \Generated\Shared\Transfer\FactFinderNgResponseTransfer $factFinderNgResponseTransfer
@@ -34,4 +35,11 @@ interface FactFinderNgResponseParserInterface
      * @return FactFinderNgTrackCheckoutResponseTransfer
      */
     public function parseTrackCheckoutResponse(FactFinderNgResponseTransfer $factFinderNgResponseTransfer): FactFinderNgTrackCheckoutResponseTransfer;
+
+    /**
+     * @param ResponseInterface $response
+     *
+     * @return FactFinderNgResponseTransfer
+     */
+    public function parseResponse(ResponseInterface $response): FactFinderNgResponseTransfer;
 }

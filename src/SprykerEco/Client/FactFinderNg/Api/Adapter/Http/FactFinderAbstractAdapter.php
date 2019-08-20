@@ -13,6 +13,8 @@ use Generated\Shared\Transfer\FactFinderNgResponseTransfer;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\RequestOptions;
+use Psr\Http\Message\ResponseInterface;
+use Spryker\Shared\Kernel\Transfer\AbstractTransfer;
 use SprykerEco\Client\FactFinderNg\Api\Adapter\FactFinderNgAdapterInterface;
 use SprykerEco\Client\FactFinderNg\Dependency\Service\FactFinderNgToUtilEncodingServiceInterface;
 use SprykerEco\Client\FactFinderNg\FactFinderNgConfig;
@@ -70,11 +72,11 @@ abstract class FactFinderAbstractAdapter implements FactFinderNgAdapterInterface
     }
 
     /**
-     * @param \Generated\Shared\Transfer\FactFinderNgRequestTransfer $factFinderNgRequestTransfer
+     * @param \Generated\Shared\Transfer\FactFinderNgRequestTransfer|AbstractTransfer $factFinderNgRequestTransfer
      *
-     * @return \Generated\Shared\Transfer\FactFinderNgResponseTransfer
+     * @return ResponseInterface
      */
-    public function sendRequest(FactFinderNgRequestTransfer $factFinderNgRequestTransfer): FactFinderNgResponseTransfer
+    public function sendRequest(AbstractTransfer $factFinderNgRequestTransfer): ResponseInterface
     {
         $url = $this->getUrl($factFinderNgRequestTransfer);
         $method = $this->getMethod();
@@ -90,31 +92,19 @@ abstract class FactFinderAbstractAdapter implements FactFinderNgAdapterInterface
      *
      * @return \Generated\Shared\Transfer\FactFinderNgResponseTransfer
      */
-    protected function send(string $method, string $url, array $options = []): FactFinderNgResponseTransfer
+    protected function send(string $method, string $url, array $options = []): ResponseInterface
     {
-        $responseTransfer = new FactFinderNgResponseTransfer();
-
-        try {
-            $response = $this->httpClient->request($method, $url, $options);
-            $responseTransfer->setBody($this->utilEncodingService->decodeJson($response->getBody(), true));
-        } catch (GuzzleException $requestException) {
-            $errorTransfer = new FactFinderNgResponseErrorTransfer();
-            $errorTransfer->setErrorCode($requestException->getCode());
-            $errorTransfer->setErrorMessage($requestException->getMessage());
-            $responseTransfer->setError($errorTransfer);
-        }
-
-        return $responseTransfer;
+        return $this->httpClient->request($method, $url, $options);
     }
 
     /**
-     * @param \Generated\Shared\Transfer\FactFinderNgRequestTransfer $factFinderNgRequestTransfer
+     * @param AbstractTransfer $factFinderNgRequestTransfer
      *
      * @return array
      */
-    protected function getOptions(FactFinderNgRequestTransfer $factFinderNgRequestTransfer): array
+    protected function getOptions(AbstractTransfer $factFinderNgRequestTransfer): array
     {
-        $options[RequestOptions::BODY] = $this->utilEncodingService->encodeJson($factFinderNgRequestTransfer->getPayload());
+        $options[RequestOptions::BODY] = $this->utilEncodingService->encodeJson($factFinderNgRequestTransfer->toArray());
         $options[RequestOptions::HEADERS] = $this->getHeaders();
         $options[RequestOptions::AUTH] = $this->getAuth();
 

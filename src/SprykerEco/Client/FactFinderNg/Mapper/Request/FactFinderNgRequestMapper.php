@@ -97,20 +97,6 @@ class FactFinderNgRequestMapper implements FactFinderNgRequestMapperInterface
         return $factFinderNgRequestTransfer;
     }
 
-
-    /**
-     * @param array $requestParameters
-     *
-     * @return FactFinderNgRequestTransfer
-     */
-    public function mapTrackCheckoutRequest(array $requestParameters): FactFinderNgRequestTransfer
-    {
-        $factFinderNgRequestTransfer = new FactFinderNgRequestTransfer();
-        $factFinderNgRequestTransfer->setPayload([]);
-
-        return $factFinderNgRequestTransfer;
-    }
-
     /**
      * @param array $params
      * @param array $requestParameters

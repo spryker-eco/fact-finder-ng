@@ -11,9 +11,11 @@ use Elastica\Query;
 use Generated\Shared\Transfer\FactFinderNgSearchResponseTransfer;
 use Generated\Shared\Transfer\FactFinderNgSuggestionResponseTransfer;
 use Generated\Shared\Transfer\FactFinderNgTrackCheckoutResponseTransfer;
+use Generated\Shared\Transfer\TrackCheckoutRequestTransfer;
+use Psr\Http\Message\ResponseInterface;
 use SprykerEco\Client\FactFinderNg\Api\Adapter\Http\Factory\AdapterFactoryInterface;
 use SprykerEco\Client\FactFinderNg\Mapper\Request\FactFinderNgRequestMapperInterface;
-use SprykerEco\Client\FactFinderNg\Parser\FactFinderNgResponseParserInterface;
+use SprykerEco\Client\FactFinderNg\Parser\ResponseParserInterface;
 
 class RequestSender implements RequestSenderInterface
 {
@@ -23,7 +25,7 @@ class RequestSender implements RequestSenderInterface
     protected $mapper;
 
     /**
-     * @var \SprykerEco\Client\FactFinderNg\Parser\FactFinderNgResponseParserInterface
+     * @var \SprykerEco\Client\FactFinderNg\Parser\ResponseParserInterface
      */
     protected $responseParser;
 
@@ -34,12 +36,12 @@ class RequestSender implements RequestSenderInterface
 
     /**
      * @param \SprykerEco\Client\FactFinderNg\Mapper\Request\FactFinderNgRequestMapperInterface $mapper
-     * @param \SprykerEco\Client\FactFinderNg\Parser\FactFinderNgResponseParserInterface $responseParser
+     * @param \SprykerEco\Client\FactFinderNg\Parser\ResponseParserInterface $responseParser
      * @param \SprykerEco\Client\FactFinderNg\Api\Adapter\Http\Factory\AdapterFactoryInterface $adapterFactory
      */
     public function __construct(
         FactFinderNgRequestMapperInterface $mapper,
-        FactFinderNgResponseParserInterface $responseParser,
+        ResponseParserInterface $responseParser,
         AdapterFactoryInterface $adapterFactory
     ) {
         $this->mapper = $mapper;
@@ -80,17 +82,15 @@ class RequestSender implements RequestSenderInterface
     }
 
     /**
-     * @param Query $query
-     * @param array $requestParameters
+     * @param TrackCheckoutRequestTransfer $trackCheckoutRequestTransfer
      *
      * @return FactFinderNgTrackCheckoutResponseTransfer
      */
-    public function sendTrackCheckoutRequest(Query $query, array $requestParameters): FactFinderNgTrackCheckoutResponseTransfer
+    public function sendTrackCheckoutRequest(TrackCheckoutRequestTransfer $trackCheckoutRequestTransfer): ResponseInterface
     {
-        $requestTransfer = $this->mapper->mapTrackCheckoutRequest($requestParameters);
         $responseTransfer = $this->adapterFactory
             ->createFactFinderNgTrackCheckoutApiAdapter()
-            ->sendRequest($requestTransfer);
+            ->sendRequest($trackCheckoutRequestTransfer);
 
         return $this->responseParser->parseTrackCheckoutResponse($responseTransfer);
     }
