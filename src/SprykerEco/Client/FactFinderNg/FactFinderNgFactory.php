@@ -93,7 +93,9 @@ class FactFinderNgFactory extends AbstractFactory
      */
     public function createResponseParser(): ResponseParserInterface
     {
-        return new ResponseParser();
+        return new ResponseParser(
+            $this->getUtilEncodingService()
+        );
     }
 
     /**

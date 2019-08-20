@@ -18,13 +18,14 @@ use Spryker\Shared\Kernel\Transfer\AbstractTransfer;
 use SprykerEco\Client\FactFinderNg\Api\Adapter\FactFinderNgAdapterInterface;
 use SprykerEco\Client\FactFinderNg\Dependency\Service\FactFinderNgToUtilEncodingServiceInterface;
 use SprykerEco\Client\FactFinderNg\FactFinderNgConfig;
+use SprykerEco\Client\FactFinderNg\Mapper\Request\FactFinderNgRequestMapper;
 
 abstract class FactFinderAbstractAdapter implements FactFinderNgAdapterInterface
 {
     protected const HEADER_KEY_CONTENT_TYPE = 'Content-Type';
     protected const HEADER_VALUE_APPLICATION_JSON = 'application/json';
 
-    protected const FACT_FINDER_URL_BASE = 'http://mytheresa-ng.fact-finder.de/FACT-Finder';
+    protected const FACT_FINDER_URL_BASE = 'https://fischer-duebel.fact-finder.de/fact-finder';
     protected const FACT_FINDER_URL_TYPE_URL = 'rest';
     protected const FACT_FINDER_URL_VERSION = 'v2';
     protected const FACT_FINDER_URL_TRACK = 'track';
@@ -90,7 +91,7 @@ abstract class FactFinderAbstractAdapter implements FactFinderNgAdapterInterface
      * @param string $url
      * @param array $options
      *
-     * @return \Generated\Shared\Transfer\FactFinderNgResponseTransfer
+     * @return ResponseInterface
      */
     protected function send(string $method, string $url, array $options = []): ResponseInterface
     {
@@ -98,13 +99,13 @@ abstract class FactFinderAbstractAdapter implements FactFinderNgAdapterInterface
     }
 
     /**
-     * @param AbstractTransfer $factFinderNgRequestTransfer
+     * @param FactFinderNgRequestTransfer|AbstractTransfer $factFinderNgRequestTransfer
      *
      * @return array
      */
     protected function getOptions(AbstractTransfer $factFinderNgRequestTransfer): array
     {
-        $options[RequestOptions::BODY] = $this->utilEncodingService->encodeJson($factFinderNgRequestTransfer->toArray());
+        $options[RequestOptions::BODY] = $this->utilEncodingService->encodeJson($factFinderNgRequestTransfer->getPayload());
         $options[RequestOptions::HEADERS] = $this->getHeaders();
         $options[RequestOptions::AUTH] = $this->getAuth();
 

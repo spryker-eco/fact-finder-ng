@@ -19,6 +19,43 @@ use Spryker\Client\ProductStorage\ProductStorageClientInterface;
 
 class FactFinderNgSearchToElasticaMapper extends AbstractFactFinderToElasticaMapper implements FactFinderToElasticaMapperInterface
 {
+    public const ELASTICA_RESPONSE_KEY_TOTAL = 'total';
+    public const ELASTICA_RESPONSE_KEY_MAX_SCORE = 'max_score';
+    public const ELASTICA_RESPONSE_KEY_HITS = 'hits';
+    public const ELASTICA_RESPONSE_KEY_INDEX = '_index';
+    public const ELASTICA_RESPONSE_KEY_SEARCH = '_search';
+    public const ELASTICA_RESPONSE_KEY_TYPE = '_type';
+    public const ELASTICA_RESPONSE_KEY_PAGE = 'page';
+    public const ELASTICA_RESPONSE_KEY_ID = '_id';
+    public const ELASTICA_RESPONSE_KEY_SCORE = '_score';
+    public const ELASTICA_RESPONSE_KEY_SOURCE = '_source';
+    public const ELASTICA_RESPONSE_KEY_SEARCH_RESULT_DATA = 'search-result-data';
+    public const ELASTICA_RESPONSE_KEY_IMAGES = 'images';
+    public const ELASTICA_RESPONSE_KEY_ID_PRODUCT_LABELS = 'id_product_labels';
+    public const ELASTICA_RESPONSE_KEY_PRICE = 'price';
+    public const ELASTICA_RESPONSE_KEY_ABSTRACT_NAME = 'abstract_name';
+    public const ELASTICA_RESPONSE_KEY_ID_PRODUCT_ABSTRACT = 'id_product_abstract';
+    public const ELASTICA_RESPONSE_KEY_OPTION_TYPE = 'type';
+    public const ELASTICA_RESPONSE_KEY_PRODUCT_ABSTRACT = 'product_abstract';
+    public const ELASTICA_RESPONSE_KEY_PRICES = 'prices';
+    public const ELASTICA_RESPONSE_KEY_ABSTRACT_SKU = 'abstract_sku';
+    public const ELASTICA_RESPONSE_KEY_URL = 'url';
+    public const ELASTICA_RESPONSE_KEY_AGGREGATIONS = 'aggregations';
+
+    public const FACT_FINDER_RESPONSE_VARIANT_VALUES = 'variantValues';
+    public const FACT_FINDER_RESPONSE_TOTAL_HITS = 'totalHits';
+    public const FACT_FINDER_RESPONSE_SCORE_FIRST_HIT = 'scoreFirstHit';
+    public const FACT_FINDER_RESPONSE_SCORE_LAST_HIT = 'scoreLastHit';
+    public const FACT_FINDER_RESPONSE_KEY_HITS = 'hits';
+    public const FACT_FINDER_RESPONSE_KEY_ID = 'id';
+    public const FACT_FINDER_RESPONSE_KEY_SCORE = 'score';
+
+    public const ABSTRACT_PRODUCT_KEY_ID = 'id_product_abstract';
+    public const ABSTRACT_PRODUCT_KEY_NAME = 'name';
+    public const ABSTRACT_PRODUCT_KEY_SKU = 'sku';
+    public const ABSTRACT_PRODUCT_KEY_URL = 'url';
+
+
     /**
      * @var \Elastica\ResultSet\DefaultBuilder
      */
@@ -89,8 +126,8 @@ class FactFinderNgSearchToElasticaMapper extends AbstractFactFinderToElasticaMap
     protected function mapSearchResultToElasticaResponseArray(array $searchResult): array
     {
         $elasticaResponseArray = [];
-        $elasticaResponseArray['hits'] = $this->mapElasticaHits($searchResult);
-        $elasticaResponseArray['aggregations'] = [];
+        $elasticaResponseArray[static::ELASTICA_RESPONSE_KEY_HITS] = $this->mapElasticaHits($searchResult);
+        $elasticaResponseArray[self::ELASTICA_RESPONSE_KEY_AGGREGATIONS] = [];
 
         return $elasticaResponseArray;
     }
@@ -103,18 +140,18 @@ class FactFinderNgSearchToElasticaMapper extends AbstractFactFinderToElasticaMap
     protected function mapElasticaHits(array $searchResult): array
     {
 
-        $total = $searchResult['totalHits'];
-        $maxScore = max($searchResult['scoreFirstHit'], $searchResult['scoreLastHit']);
+        $total = $searchResult[static::FACT_FINDER_RESPONSE_TOTAL_HITS];
+        $maxScore = max($searchResult[static::FACT_FINDER_RESPONSE_SCORE_FIRST_HIT], $searchResult[static::FACT_FINDER_RESPONSE_SCORE_LAST_HIT]);
         $elasticaHits = [];
-        foreach ($searchResult['hits'] as $searchHit) {
-            if (!count($searchHit['variantValues'])) {
+        foreach ($searchResult[static::FACT_FINDER_RESPONSE_KEY_HITS] as $searchHit) {
+            if (!count($searchHit[static::FACT_FINDER_RESPONSE_VARIANT_VALUES])) {
                 continue;
             }
 
             $productAbstract = $this->productStorageClient
                 ->findProductAbstractStorageDataByMapping(
                     static::SKU_MAPPING_TYPE,
-                    $searchHit['id'],
+                    $searchHit[static::FACT_FINDER_RESPONSE_KEY_ID],
                     $this->currentLocale
                 );
             if ($productAbstract === null) {
@@ -122,7 +159,7 @@ class FactFinderNgSearchToElasticaMapper extends AbstractFactFinderToElasticaMap
             }
             $productAbstractImageStorageTransfer = $this->productImageStorageClient
                 ->findProductImageAbstractStorageTransfer(
-                    $productAbstract['id_product_abstract'],
+                    $productAbstract[static::ABSTRACT_PRODUCT_KEY_ID],
                     $this->currentLocale
                 );
 
@@ -130,23 +167,23 @@ class FactFinderNgSearchToElasticaMapper extends AbstractFactFinderToElasticaMap
             $elasticaPrices = $this->mapElasticaPrices($productAbstract);
 
             $elasticaHit = [
-                '_index' => $this->currentLocale . '_search',
-                '_type' => 'page',
-                '_id' => $productAbstract['id_product_abstract'],
-                '_score' => $searchHit['score'],
-                '_source' =>
+                static::ELASTICA_RESPONSE_KEY_INDEX => $this->currentLocale . static::ELASTICA_RESPONSE_KEY_SEARCH,
+                static::ELASTICA_RESPONSE_KEY_TYPE => static::ELASTICA_RESPONSE_KEY_PAGE,
+                static::ELASTICA_RESPONSE_KEY_ID => $productAbstract[static::ABSTRACT_PRODUCT_KEY_ID],
+                static::ELASTICA_RESPONSE_KEY_SCORE => $searchHit[static::FACT_FINDER_RESPONSE_KEY_SCORE],
+                static::ELASTICA_RESPONSE_KEY_SOURCE =>
                     [
-                        'search-result-data' =>
+                        static::ELASTICA_RESPONSE_KEY_SEARCH_RESULT_DATA =>
                             [
-                                'images' => $elasticaImages,
-                                'id_product_labels' => [],
-                                'price' => 0,
-                                'abstract_name' => $productAbstract['name'],
-                                'id_product_abstract' => $productAbstract['id_product_abstract'],
-                                'type' => 'product_abstract',
-                                'prices' => $elasticaPrices,
-                                'abstract_sku' => $productAbstract['sku'],
-                                'url' => $productAbstract['url'],
+                                static::ELASTICA_RESPONSE_KEY_IMAGES => $elasticaImages,
+                                static::ELASTICA_RESPONSE_KEY_ID_PRODUCT_LABELS => [],
+                                static::ELASTICA_RESPONSE_KEY_PRICE => 0,
+                                static::ELASTICA_RESPONSE_KEY_ABSTRACT_NAME => $productAbstract[static::ABSTRACT_PRODUCT_KEY_NAME],
+                                static::ELASTICA_RESPONSE_KEY_ID_PRODUCT_ABSTRACT => $productAbstract[static::ABSTRACT_PRODUCT_KEY_ID],
+                                static::ELASTICA_RESPONSE_KEY_OPTION_TYPE => static::ELASTICA_RESPONSE_KEY_PRODUCT_ABSTRACT,
+                                static::ELASTICA_RESPONSE_KEY_PRICES => $elasticaPrices,
+                                static::ELASTICA_RESPONSE_KEY_ABSTRACT_SKU => $productAbstract[static::ABSTRACT_PRODUCT_KEY_SKU],
+                                static::ELASTICA_RESPONSE_KEY_URL => $productAbstract[static::ABSTRACT_PRODUCT_KEY_URL],
                             ],
                     ],
             ];
@@ -155,9 +192,9 @@ class FactFinderNgSearchToElasticaMapper extends AbstractFactFinderToElasticaMap
         }
 
         return [
-            'total' => $total,
-            'max_score' => $maxScore,
-            'hits' => $elasticaHits,
+            static::ELASTICA_RESPONSE_KEY_TOTAL => $total,
+            static::ELASTICA_RESPONSE_KEY_MAX_SCORE => $maxScore,
+            static::ELASTICA_RESPONSE_KEY_HITS => $elasticaHits,
         ];
     }
 }

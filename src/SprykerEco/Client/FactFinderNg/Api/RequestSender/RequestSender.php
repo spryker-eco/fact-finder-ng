@@ -8,6 +8,7 @@
 namespace SprykerEco\Client\FactFinderNg\Api\RequestSender;
 
 use Elastica\Query;
+use Generated\Shared\Transfer\FactFinderNgResponseTransfer;
 use Generated\Shared\Transfer\FactFinderNgSearchResponseTransfer;
 use Generated\Shared\Transfer\FactFinderNgSuggestionResponseTransfer;
 use Generated\Shared\Transfer\FactFinderNgTrackCheckoutResponseTransfer;
@@ -53,16 +54,16 @@ class RequestSender implements RequestSenderInterface
      * @param \Elastica\Query $query
      * @param array $requestParameters
      *
-     * @return \Generated\Shared\Transfer\FactFinderNgSearchResponseTransfer
+     * @return \Generated\Shared\Transfer\FactFinderNgResponseTransfer
      */
-    public function sendSearchRequest(Query $query, array $requestParameters): FactFinderNgSearchResponseTransfer
+    public function sendSearchRequest(Query $query, array $requestParameters): FactFinderNgResponseTransfer
     {
         $requestTransfer = $this->mapper->mapSearchRequest($requestParameters);
-        $responseTransfer = $this->adapterFactory
+        $response = $this->adapterFactory
             ->createFactFinderNgSearchAdapter()
             ->sendRequest($requestTransfer);
 
-        return $this->responseParser->parseSearchResponse($responseTransfer);
+        return $this->responseParser->parseResponse($response);
     }
 
     /**
@@ -84,14 +85,14 @@ class RequestSender implements RequestSenderInterface
     /**
      * @param TrackCheckoutRequestTransfer $trackCheckoutRequestTransfer
      *
-     * @return FactFinderNgTrackCheckoutResponseTransfer
+     * @return FactFinderNgResponseTransfer
      */
-    public function sendTrackCheckoutRequest(TrackCheckoutRequestTransfer $trackCheckoutRequestTransfer): ResponseInterface
+    public function sendTrackCheckoutRequest(TrackCheckoutRequestTransfer $trackCheckoutRequestTransfer): FactFinderNgResponseTransfer
     {
-        $responseTransfer = $this->adapterFactory
+        $response = $this->adapterFactory
             ->createFactFinderNgTrackCheckoutApiAdapter()
             ->sendRequest($trackCheckoutRequestTransfer);
 
-        return $this->responseParser->parseTrackCheckoutResponse($responseTransfer);
+        return $this->responseParser->parseResponse($response);
     }
 }

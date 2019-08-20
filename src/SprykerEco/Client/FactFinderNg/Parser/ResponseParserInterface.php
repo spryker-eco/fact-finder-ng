@@ -16,27 +16,6 @@ use Psr\Http\Message\ResponseInterface;
 interface ResponseParserInterface
 {
     /**
-     * @param \Generated\Shared\Transfer\FactFinderNgResponseTransfer $factFinderNgResponseTransfer
-     *
-     * @return \Generated\Shared\Transfer\FactFinderNgSearchResponseTransfer
-     */
-    public function parseSearchResponse(FactFinderNgResponseTransfer $factFinderNgResponseTransfer): FactFinderNgSearchResponseTransfer;
-
-    /**
-     * @param \Generated\Shared\Transfer\FactFinderNgResponseTransfer $factFinderNgResponseTransfer
-     *
-     * @return \Generated\Shared\Transfer\FactFinderNgSuggestionResponseTransfer
-     */
-    public function parseSuggestionResponse(FactFinderNgResponseTransfer $factFinderNgResponseTransfer): FactFinderNgSuggestionResponseTransfer;
-
-    /**
-     * @param FactFinderNgResponseTransfer $factFinderNgResponseTransfer
-     *
-     * @return FactFinderNgTrackCheckoutResponseTransfer
-     */
-    public function parseTrackCheckoutResponse(FactFinderNgResponseTransfer $factFinderNgResponseTransfer): FactFinderNgTrackCheckoutResponseTransfer;
-
-    /**
      * @param ResponseInterface $response
      *
      * @return FactFinderNgResponseTransfer

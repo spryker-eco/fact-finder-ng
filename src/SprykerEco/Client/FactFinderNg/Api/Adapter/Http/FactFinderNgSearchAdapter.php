@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 class FactFinderNgSearchAdapter extends FactFinderAbstractAdapter
 {
-    protected const FACT_FINDER_URL_SEARCH = 'rest/v2/search';
+    protected const FACT_FINDER_URL_SEARCH = 'search';
 
     /**
      * @param \Generated\Shared\Transfer\FactFinderNgRequestTransfer $factFinderNgRequestTransfer
@@ -21,7 +21,12 @@ class FactFinderNgSearchAdapter extends FactFinderAbstractAdapter
      */
     protected function getUrl(FactFinderNgRequestTransfer $factFinderNgRequestTransfer): string
     {
-        return sprintf('%s/%s', static::FACT_FINDER_URL_BASE, static::FACT_FINDER_URL_SEARCH);
+        return sprintf('%s/%s/%s/%s',
+            static::FACT_FINDER_URL_BASE,
+            static::FACT_FINDER_URL_TYPE_URL,
+            static::FACT_FINDER_URL_VERSION,
+            static::FACT_FINDER_URL_SEARCH
+        );
     }
 
     /**

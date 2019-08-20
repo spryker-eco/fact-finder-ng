@@ -8,10 +8,10 @@
 namespace SprykerEco\Client\FactFinderNg\Api\RequestSender;
 
 use Elastica\Query;
-use Generated\Shared\Transfer\FactFinderNgSearchResponseTransfer;
+use Generated\Shared\Transfer\FactFinderNgResponseTransfer;
 use Generated\Shared\Transfer\FactFinderNgSuggestionResponseTransfer;
-use Generated\Shared\Transfer\FactFinderNgTrackCheckoutResponseTransfer;
 use Generated\Shared\Transfer\TrackCheckoutRequestTransfer;
+use Psr\Http\Message\ResponseInterface;
 
 interface RequestSenderInterface
 {
@@ -19,9 +19,9 @@ interface RequestSenderInterface
      * @param \Elastica\Query $query
      * @param array $requestParameters
      *
-     * @return \Generated\Shared\Transfer\FactFinderNgSearchResponseTransfer
+     * @return \Generated\Shared\Transfer\FactFinderNgResponseTransfer
      */
-    public function sendSearchRequest(Query $query, array $requestParameters): FactFinderNgSearchResponseTransfer;
+    public function sendSearchRequest(Query $query, array $requestParameters): FactFinderNgResponseTransfer;
 
     /**
      * @param \Elastica\Query $query
@@ -34,7 +34,7 @@ interface RequestSenderInterface
     /**
      * @param TrackCheckoutRequestTransfer $trackCheckoutRequestTransfer
      *
-     * @return FactFinderNgTrackCheckoutResponseTransfer
+     * @return FactFinderNgResponseTransfer
      */
-    public function sendTrackCheckoutRequest(TrackCheckoutRequestTransfer $trackCheckoutRequestTransfer): FactFinderNgTrackCheckoutResponseTransfer;
+    public function sendTrackCheckoutRequest(TrackCheckoutRequestTransfer $trackCheckoutRequestTransfer): FactFinderNgResponseTransfer;
 }
