@@ -91,8 +91,8 @@ class FactFinderNgSuggestToElasticaMapper extends AbstractFactFinderToElasticaMa
     protected function mapSearchResultToElasticaResponseArray(array $searchResult): array
     {
         $elasticaResponseArray = [];
-        $elasticaResponseArray['hits'] = [];
-        $elasticaResponseArray['aggregations'] = $this->mapElasticaAggregations($searchResult);
+        $elasticaResponseArray[static::KEY_HITS] = [];
+        $elasticaResponseArray[static::KEY_AGGREGATIONS] = $this->mapElasticaAggregations($searchResult);
 
         return $elasticaResponseArray;
     }
@@ -119,23 +119,23 @@ class FactFinderNgSuggestToElasticaMapper extends AbstractFactFinderToElasticaMa
     protected function mapElasticaCompletion(array $searchResult): array
     {
         $buckets = [];
-        $ffSuggestCategoryItems = $this->findSuggestItemsByType($searchResult, 'category');
-        $ffSuggestBrandItems = $this->findSuggestItemsByType($searchResult, 'brand');
+        $ffSuggestCategoryItems = $this->findSuggestItemsByType($searchResult, static::KEY_CATEGORY);
+        $ffSuggestBrandItems = $this->findSuggestItemsByType($searchResult, static::KEY_BRAND);
         $ffSuggestItems = array_merge($ffSuggestCategoryItems, $ffSuggestBrandItems);
 
         foreach ($ffSuggestItems as $ffSuggestItem) {
             $bucket = [
-                'key' => $ffSuggestItem['name'],
-                'doc_count' => $ffSuggestItem['hitCount'],
+                static::KEY_KEY => $ffSuggestItem[static::KEY_NAME],
+                static::KEY_DOC_COUNT => $ffSuggestItem[static::KEY_HIT_COUNT],
             ];
 
             $buckets[] = $bucket;
         }
 
         $completion = [
-            'doc_count_error_upper_bound' => 0,
-            'sum_other_doc_count' => count($buckets),
-            'buckets' => $buckets,
+            static::KEY_DOC_COUNT_ERROR_UPPER_BOUND => 0,
+            static::KEY_SUM_OTHER_DOC_COUNT => count($buckets),
+            static::KEY_BUCKETS => $buckets,
         ];
 
         return $completion;
@@ -156,9 +156,9 @@ class FactFinderNgSuggestToElasticaMapper extends AbstractFactFinderToElasticaMa
         }
 
         $suggestion = [
-            'doc_count_error_upper_bound' => 0,
-            'sum_other_doc_count' => 0,
-            'buckets' => $buckets,
+            static::KEY_DOC_COUNT_ERROR_UPPER_BOUND => 0,
+            static::KEY_SUM_OTHER_DOC_COUNT => 0,
+            static::KEY_BUCKETS => $buckets,
         ];
 
         return $suggestion;
@@ -171,7 +171,7 @@ class FactFinderNgSuggestToElasticaMapper extends AbstractFactFinderToElasticaMa
      */
     protected function mapElasticaProductBucket(array $searchResult): array
     {
-        $ffSuggestItems = $this->findSuggestItemsByType($searchResult, 'productName');
+        $ffSuggestItems = $this->findSuggestItemsByType($searchResult, static::KEY_PRODUCT_NAME);
         $hits = [];
         $maxScore = 0;
 
@@ -179,14 +179,14 @@ class FactFinderNgSuggestToElasticaMapper extends AbstractFactFinderToElasticaMa
             $productAbstract = $this->productStorageClient
                 ->findProductAbstractStorageDataByMapping(
                     static::SKU_MAPPING_TYPE,
-                    $ffSuggestItem['attributes']['masterId'],
+                    $ffSuggestItem[static::KEY_ATTRIBUTES][static::KEY_MASTER_ID],
                     $this->currentLocale
                 );
 
             if ($productAbstract === null) {
                 continue;
             }
-            $maxScore = max($maxScore, $ffSuggestItem['score']);
+            $maxScore = max($maxScore, $ffSuggestItem[static::KEY_SCORE]);
 
             $hits[] = $this->mapHit($productAbstract, $ffSuggestItem);
         }
@@ -210,7 +210,7 @@ class FactFinderNgSuggestToElasticaMapper extends AbstractFactFinderToElasticaMa
     {
         $ffSuggestItems = [];
         foreach ($searchResult as $ffSuggestItem) {
-            if ($ffSuggestItem['type'] == $ffSuggestType) {
+            if ($ffSuggestItem[static::KEY_OPTION_TYPE] == $ffSuggestType) {
                 $ffSuggestItems[] = $ffSuggestItem;
             }
         }
@@ -227,40 +227,31 @@ class FactFinderNgSuggestToElasticaMapper extends AbstractFactFinderToElasticaMa
     protected function mapHit(array $productAbstract, array $ffSuggestItem): array
     {
         return [
-            '_index' => $this->currentLocale . '_search',
-            '_type' => 'page',
-            '_id' => $productAbstract['id_product_abstract'],
-            '_score' => $ffSuggestItem['score'],
-            '_source' => [
-                'store' => $this->currentStore->getName(),
-                'locale' => $this->currentLocale,
-                'type' => 'product_abstract',
-                'is-active' => true,
-                'search-result-data' =>
+            static::KEY_INDEX => $this->currentLocale . static::KEY_SEARCH,
+            static::KEY_TYPE => static::KEY_PAGE,
+            static::KEY_ID => $productAbstract[static::KEY_ID_PRODUCT_ABSTRACT],
+            static::KEY_OPTION_SCORE => $ffSuggestItem[static::KEY_SCORE],
+            static::KEY_SOURCE => [
+                static::KEY_STORE => $this->currentStore->getName(),
+                static::KEY_LOCALE => $this->currentLocale,
+                static::KEY_OPTION_TYPE => static::KEY_PRODUCT_ABSTRACT,
+                static::KEY_IS_ACTIVE => true,
+                static::KEY_SEARCH_RESULT_DATA =>
                     [
-                        'id_product_abstract' => $productAbstract['id_product_abstract'],
-                        'abstract_sku' => $productAbstract['sku'],
-                        'abstract_name' => $productAbstract['name'],
-                        'url' => $productAbstract['url'],
-                        'type' => 'product_abstract',
-                        'price' => 0,
-                        'prices' => $this->mapElasticaPrices($productAbstract),
-                        'images' => $this->mapElasticaImages($this->productImageStorageClient
+                        static::KEY_ID_PRODUCT_ABSTRACT => $productAbstract[static::KEY_ID_PRODUCT_ABSTRACT],
+                        static::KEY_ABSTRACT_SKU => $productAbstract[static::KEY_SKU],
+                        static::KEY_ABSTRACT_NAME => $productAbstract[static::KEY_NAME],
+                        static::KEY_URL => $productAbstract[static::KEY_URL],
+                        static::KEY_OPTION_TYPE => static::KEY_PRODUCT_ABSTRACT,
+                        static::KEY_PRICE => 0,
+                        static::KEY_PRICES => $this->mapElasticaPrices($productAbstract),
+                        static::KEY_IMAGES => $this->mapElasticaImages($this->productImageStorageClient
                             ->findProductImageAbstractStorageTransfer(
-                                $productAbstract['id_product_abstract'],
+                                $productAbstract[static::KEY_ID_PRODUCT_ABSTRACT],
                                 $this->currentLocale
                             )),
-                        'id_product_labels' => [],
+                        static::KEY_ID_PRODUCT_LABELS => [],
                     ],
-                'full-text-boosted' => [],
-                'full-text' => [],
-                'suggestion-terms' => [],
-                'completion-terms' => [],
-                'string-sort' => [],
-                'integer-sort' => [],
-                'integer-facet' => [],
-                'category' => [],
-                'string-facet' => [],
             ],
         ];
     }
@@ -275,13 +266,13 @@ class FactFinderNgSuggestToElasticaMapper extends AbstractFactFinderToElasticaMa
     protected function mapBucket(int $hitsCount, int $maxScore, array $hits): array
     {
         return [
-            'key' => 'product_abstract',
-            'doc_count' => $hitsCount,
-            'top-hits' => [
-                'hits' => [
-                    'total' => $hitsCount,
-                    'max_score' => $maxScore,
-                    'hits' => $hits,
+            static::KEY_KEY => static::KEY_PRODUCT_ABSTRACT,
+            static::KEY_DOC_COUNT => $hitsCount,
+            static::KEY_TOP_HITS => [
+                static::KEY_HITS => [
+                    static::KEY_TOTAL => $hitsCount,
+                    static::KEY_MAX_SCORE => $maxScore,
+                    static::KEY_HITS => $hits,
                 ],
             ],
         ];
