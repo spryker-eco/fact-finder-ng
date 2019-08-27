@@ -8,9 +8,6 @@
 namespace SprykerEco\Client\FactFinderNg\Parser;
 
 use Generated\Shared\Transfer\FactFinderNgResponseTransfer;
-use Generated\Shared\Transfer\FactFinderNgSearchResponseTransfer;
-use Generated\Shared\Transfer\FactFinderNgSuggestionResponseTransfer;
-use Generated\Shared\Transfer\FactFinderNgTrackCheckoutResponseTransfer;
 use Psr\Http\Message\ResponseInterface;
 
 interface ResponseParserInterface

@@ -34,16 +34,4 @@
         <property name="errorDescription" type="string" />
         <property name="stacktrace" type="string" />
     </transfer>
-
-    <transfer name="FactFinderNgSearchResponse">
-        <property name="body" type="array" />
-    </transfer>
-
-    <transfer name="FactFinderNgSuggestionResponse">
-        <property name="body" type="array" />
-    </transfer>
-
-    <transfer name="FactFinderNgTrackCheckoutResponse">
-        <property name="body" type="array" />
-    </transfer>
 </transfers>
