@@ -69,6 +69,6 @@ class FactFinderSortedResultFormatterPlugin extends AbstractElasticsearchResultF
      */
     protected function getCurrentSortParam(array $requestParameters): string
     {
-        return $requestParameters[static::NAME];
+        return $requestParameters[static::NAME] ?? '';
     }
 }
