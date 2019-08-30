@@ -24,4 +24,9 @@ interface FactFinderNgRequestMapperInterface
      * @return \Generated\Shared\Transfer\FactFinderNgRequestTransfer
      */
     public function mapSuggestionRequest(array $requestParameters): FactFinderNgRequestTransfer;
+
+    /**
+     * @return FactFinderNgRequestTransfer
+     */
+    public function mapTriggerSearchImportRequest(): FactFinderNgRequestTransfer;
 }

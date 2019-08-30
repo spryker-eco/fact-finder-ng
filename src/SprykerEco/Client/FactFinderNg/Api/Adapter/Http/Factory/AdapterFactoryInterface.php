@@ -24,5 +24,10 @@ interface AdapterFactoryInterface
     /**
      * @return FactFinderNgAdapterInterface
      */
+    public function createFactFinderImportSearchAdapter(): FactFinderNgAdapterInterface;
+
+    /**
+     * @return FactFinderNgAdapterInterface
+     */
     public function createFactFinderNgTrackCheckoutApiAdapter(): FactFinderNgAdapterInterface;
 }

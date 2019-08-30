@@ -97,6 +97,22 @@ class FactFinderNgRequestMapper implements FactFinderNgRequestMapperInterface
         return $factFinderNgRequestTransfer;
     }
 
+
+    /**
+     * @return FactFinderNgRequestTransfer
+     */
+    public function mapTriggerSearchImportRequest(): FactFinderNgRequestTransfer
+    {
+        $payload = [
+            static::KEY_CHANNEL => $this->config->getFactFinderChannel(),
+        ];
+
+        $factFinderNgRequestTransfer = new FactFinderNgRequestTransfer();
+        $factFinderNgRequestTransfer->setPayload($payload);
+
+        return $factFinderNgRequestTransfer;
+    }
+
     /**
      * @param array $params
      * @param array $requestParameters
@@ -110,7 +126,7 @@ class FactFinderNgRequestMapper implements FactFinderNgRequestMapperInterface
             $order = explode('_', $requestParameters[static::KEY_REQUEST_PARAMETER_SORT])[1];
 
             $params[static::KEY_SORT_ITEMS][] = [
-                static::KEY_NAME => $name,
+                static::KEY_NAME => ucfirst($name),
                 static::KEY_SORT_ORDER => $order,
             ];
         }

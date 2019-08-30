@@ -54,4 +54,15 @@ interface FactFinderNgClientInterface
      * @return FactFinderNgResponseTransfer
      */
     public function trackCheckout(QuoteTransfer $quoteTransfer): FactFinderNgResponseTransfer;
+
+    /**
+     * Specification:
+     * - Trigger importing search data via API call.
+     * - Url for getting file is set in Fact Finder UI.
+     *
+     * @api
+     *
+     * @return FactFinderNgResponseTransfer
+     */
+    public function triggerSearchImport(): FactFinderNgResponseTransfer;
 }

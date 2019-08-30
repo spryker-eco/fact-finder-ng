@@ -17,6 +17,8 @@ use SprykerEco\Client\FactFinderNg\Api\RequestSender\RequestSenderInterface;
 use SprykerEco\Client\FactFinderNg\Dependency\Service\FactFinderNgToUtilEncodingServiceInterface;
 use SprykerEco\Client\FactFinderNg\Handler\FactFinderNgSearchHandler;
 use SprykerEco\Client\FactFinderNg\Handler\FactFinderNgSuggestHandler;
+use SprykerEco\Client\FactFinderNg\ImportTrigger\ImportTriggerInterface;
+use SprykerEco\Client\FactFinderNg\ImportTrigger\SearchImportTrigger;
 use SprykerEco\Client\FactFinderNg\Mapper\Elastica\FactFinderNgSearchToElasticaMapper;
 use SprykerEco\Client\FactFinderNg\Mapper\Elastica\FactFinderNgSuggestToElasticaMapper;
 use SprykerEco\Client\FactFinderNg\Mapper\Elastica\FactFinderToElasticaMapperInterface;
@@ -215,6 +217,18 @@ class FactFinderNgFactory extends AbstractFactory
             $this->createTrackApiRequestMapper(),
             $this->createAdapterFactory(),
             $this->createResponseParser()
+        );
+    }
+
+    /**
+     * @return ImportTriggerInterface
+     */
+    public function createSearchImportTrigger(): ImportTriggerInterface
+    {
+        return new SearchImportTrigger(
+            $this->createRequestMapper(),
+            $this->createResponseParser(),
+            $this->createAdapterFactory()
         );
     }
 }

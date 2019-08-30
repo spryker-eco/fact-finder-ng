@@ -62,4 +62,16 @@ class FactFinderNgClient extends AbstractClient implements FactFinderNgClientInt
     {
         return $this->getFactory()->createTrackCheckoutProcessor()->processApiRequest($quoteTransfer);
     }
+
+    /**
+     * {@inheritdoc}
+     *
+     * @api
+     *
+     * @return FactFinderNgResponseTransfer
+     */
+    public function triggerSearchImport(): FactFinderNgResponseTransfer
+    {
+        return $this->getFactory()->createSearchImportTrigger()->trigger();
+    }
 }
