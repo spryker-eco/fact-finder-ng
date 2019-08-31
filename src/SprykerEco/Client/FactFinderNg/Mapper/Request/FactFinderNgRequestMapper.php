@@ -103,12 +103,8 @@ class FactFinderNgRequestMapper implements FactFinderNgRequestMapperInterface
      */
     public function mapTriggerSearchImportRequest(): FactFinderNgRequestTransfer
     {
-        $payload = [
-            static::KEY_CHANNEL => $this->config->getFactFinderChannel(),
-        ];
-
         $factFinderNgRequestTransfer = new FactFinderNgRequestTransfer();
-        $factFinderNgRequestTransfer->setPayload($payload);
+        $factFinderNgRequestTransfer->setPayload([]);
 
         return $factFinderNgRequestTransfer;
     }

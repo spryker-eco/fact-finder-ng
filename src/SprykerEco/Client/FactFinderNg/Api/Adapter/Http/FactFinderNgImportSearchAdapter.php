@@ -19,12 +19,13 @@ class FactFinderNgImportSearchAdapter extends FactFinderAbstractAdapter
      */
     protected function getUrl(FactFinderNgRequestTransfer $factFinderNgRequestTransfer): string
     {
-        return sprintf('%s/%s/%s/%s/%s',
+        return sprintf('%s/%s/%s/%s/%s?channel=%s',
             static::FACT_FINDER_URL_BASE,
             static::FACT_FINDER_URL_TYPE_URL,
             static::FACT_FINDER_URL_VERSION,
             static::FACT_FINDER_URL_IMPORT,
-            static::FACT_FINDER_URL_SEARCH
+            static::FACT_FINDER_URL_SEARCH,
+            $this->getChannel()
         );
     }
 
@@ -34,5 +35,10 @@ class FactFinderNgImportSearchAdapter extends FactFinderAbstractAdapter
     protected function getMethod(): string
     {
         return Request::METHOD_POST;
+    }
+
+    protected function getChannel(): string
+    {
+        return $this->config->getFactFinderChannel();
     }
 }
