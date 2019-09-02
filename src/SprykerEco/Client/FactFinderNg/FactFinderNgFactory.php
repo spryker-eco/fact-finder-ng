@@ -17,6 +17,7 @@ use SprykerEco\Client\FactFinderNg\Api\RequestSender\RequestSenderInterface;
 use SprykerEco\Client\FactFinderNg\Dependency\Service\FactFinderNgToUtilEncodingServiceInterface;
 use SprykerEco\Client\FactFinderNg\EventTracker\CartEventTracker;
 use SprykerEco\Client\FactFinderNg\EventTracker\CheckoutEventTracker;
+use SprykerEco\Client\FactFinderNg\EventTracker\ClickEventTracker;
 use SprykerEco\Client\FactFinderNg\EventTracker\EventTrackerInterface;
 use SprykerEco\Client\FactFinderNg\Handler\FactFinderNgSearchHandler;
 use SprykerEco\Client\FactFinderNg\Handler\FactFinderNgSuggestHandler;
@@ -233,6 +234,18 @@ class FactFinderNgFactory extends AbstractFactory
     public function createCartEventTracker(): EventTrackerInterface
     {
         return new CartEventTracker(
+            $this->createRequestMapper(),
+            $this->createAdapterFactory(),
+            $this->createResponseParser()
+        );
+    }
+
+    /**
+     * @return EventTrackerInterface
+     */
+    public function createClickEventTracker(): EventTrackerInterface
+    {
+        return new ClickEventTracker(
             $this->createRequestMapper(),
             $this->createAdapterFactory(),
             $this->createResponseParser()

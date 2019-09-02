@@ -8,6 +8,7 @@
 namespace SprykerEco\Client\FactFinderNg;
 
 use Generated\Shared\Transfer\CartOrCheckoutEventTransfer;
+use Generated\Shared\Transfer\ClickEventTransfer;
 use Generated\Shared\Transfer\FactFinderNgResponseTransfer;
 use Spryker\Client\Kernel\AbstractClient;
 use Spryker\Client\Search\Dependency\Plugin\QueryInterface;
@@ -75,6 +76,21 @@ class FactFinderNgClient extends AbstractClient implements FactFinderNgClientInt
     public function trackCartEvent(array $cartOrCheckoutEventTransfers): FactFinderNgResponseTransfer
     {
         return $this->getFactory()->createCartEventTracker()->track($cartOrCheckoutEventTransfers);
+    }
+
+    /**
+     * Specification:
+     * - Method send request to Fact finder for tracking clicking by product event.
+     *
+     * @api
+     *
+     * @param ClickEventTransfer[] $clickEventTransfers
+     *
+     * @return FactFinderNgResponseTransfer
+     */
+    public function trackClickEvent(array $clickEventTransfers): FactFinderNgResponseTransfer
+    {
+        return $this->getFactory()->createClickEventTracker()->track($clickEventTransfers);
     }
 
     /**

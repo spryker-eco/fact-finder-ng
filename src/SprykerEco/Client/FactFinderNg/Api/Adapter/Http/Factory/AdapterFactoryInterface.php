@@ -35,4 +35,9 @@ interface AdapterFactoryInterface
      * @return FactFinderNgAdapterInterface
      */
     public function createFactFinderNgTrackCartApiAdapter(): FactFinderNgAdapterInterface;
+
+    /**
+     * @return FactFinderNgAdapterInterface
+     */
+    public function createFactFinderNgTrackClickApiAdapter(): FactFinderNgAdapterInterface;
 }

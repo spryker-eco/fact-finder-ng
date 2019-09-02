@@ -22,6 +22,22 @@
         <property name="userId" type="string" />
     </transfer>
 
+    <transfer name="ClickEvent">
+        <property name="campaign" type="string" />
+        <property name="id" type="string" />
+        <property name="masterId" type="string" />
+        <property name="origPageSize" type="int" />
+        <property name="origPos" type="int" />
+        <property name="page" type="int" />
+        <property name="pageSize" type="int" />
+        <property name="pos" type="int" />
+        <property name="query" type="string" />
+        <property name="score" type="float" />
+        <property name="sid" type="string" />
+        <property name="title" type="string" />
+        <property name="userID" type="string" />
+    </transfer>
+
     <transfer name="FactFinderNgResponse">
         <property name="isSuccess" type="bool" />
         <property name="error" type="FactFinderNgResponseError" />

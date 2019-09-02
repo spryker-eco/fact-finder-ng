@@ -14,6 +14,7 @@ use SprykerEco\Client\FactFinderNg\Api\Adapter\Http\FactFinderNgSearchAdapter;
 use SprykerEco\Client\FactFinderNg\Api\Adapter\Http\FactFinderNgSuggestAdapter;
 use SprykerEco\Client\FactFinderNg\Api\Adapter\Http\FactFinderNgTrackCartAdapter;
 use SprykerEco\Client\FactFinderNg\Api\Adapter\Http\FactFinderNgTrackCheckoutAdapter;
+use SprykerEco\Client\FactFinderNg\Api\Adapter\Http\FactFinderNgTrackClickAdapter;
 use SprykerEco\Client\FactFinderNg\Dependency\Service\FactFinderNgToUtilEncodingServiceInterface;
 use SprykerEco\Client\FactFinderNg\FactFinderNgConfig;
 
@@ -103,6 +104,18 @@ class AdapterFactory implements AdapterFactoryInterface
     public function createFactFinderNgTrackCartApiAdapter(): FactFinderNgAdapterInterface
     {
         return new FactFinderNgTrackCartAdapter(
+            $this->client,
+            $this->utilEncodingService,
+            $this->config
+        );
+    }
+
+    /**
+     * @return FactFinderNgAdapterInterface
+     */
+    public function createFactFinderNgTrackClickApiAdapter(): FactFinderNgAdapterInterface
+    {
+        return new FactFinderNgTrackClickAdapter(
             $this->client,
             $this->utilEncodingService,
             $this->config

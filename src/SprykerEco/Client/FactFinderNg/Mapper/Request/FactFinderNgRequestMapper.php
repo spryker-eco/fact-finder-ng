@@ -8,6 +8,7 @@
 namespace SprykerEco\Client\FactFinderNg\Mapper\Request;
 
 use Generated\Shared\Transfer\CartOrCheckoutEventTransfer;
+use Generated\Shared\Transfer\ClickEventTransfer;
 use Generated\Shared\Transfer\FactFinderNgRequestTransfer;
 use SprykerEco\Client\FactFinderNg\FactFinderNgConfig;
 
@@ -142,6 +143,25 @@ class FactFinderNgRequestMapper implements FactFinderNgRequestMapperInterface
 
         foreach ($cartOrCheckoutEventTransfers as $cartOrCheckoutEventTransfer) {
             $payload[] = $cartOrCheckoutEventTransfer->toArray();
+        }
+
+        $factFinderNgRequestTransfer = new FactFinderNgRequestTransfer();
+        $factFinderNgRequestTransfer->setPayload($payload);
+
+        return $factFinderNgRequestTransfer;
+    }
+
+    /**
+     * @param ClickEventTransfer[] $clickEventTransfers
+     *
+     * @return FactFinderNgRequestTransfer
+     */
+    public function mapTrackClickEventRequest(array $clickEventTransfers): FactFinderNgRequestTransfer
+    {
+        $payload = [];
+
+        foreach ($clickEventTransfers as $clickEventTransfer) {
+            $payload[] = $clickEventTransfer->toArray();
         }
 
         $factFinderNgRequestTransfer = new FactFinderNgRequestTransfer();
