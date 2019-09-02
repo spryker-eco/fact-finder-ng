@@ -19,6 +19,7 @@ use SprykerEco\Client\FactFinderNg\EventTracker\CartEventTracker;
 use SprykerEco\Client\FactFinderNg\EventTracker\CheckoutEventTracker;
 use SprykerEco\Client\FactFinderNg\EventTracker\ClickEventTracker;
 use SprykerEco\Client\FactFinderNg\EventTracker\EventTrackerInterface;
+use SprykerEco\Client\FactFinderNg\Handler\FactFinderNavigationHandler;
 use SprykerEco\Client\FactFinderNg\Handler\FactFinderNgSearchHandler;
 use SprykerEco\Client\FactFinderNg\Handler\FactFinderNgSuggestHandler;
 use SprykerEco\Client\FactFinderNg\ImportTrigger\ImportTriggerInterface;
@@ -75,18 +76,6 @@ class FactFinderNgFactory extends AbstractFactory
     }
 
     /**
-     * @return \SprykerEco\Client\FactFinderNg\Api\RequestSender\RequestSenderInterface
-     */
-    public function createRequestSender(): RequestSenderInterface
-    {
-        return new RequestSender(
-            $this->createRequestMapper(),
-            $this->createResponseParser(),
-            $this->createAdapterFactory()
-        );
-    }
-
-    /**
      * @return \SprykerEco\Client\FactFinderNg\Mapper\Request\FactFinderNgRequestMapperInterface
      */
     public function createRequestMapper(): FactFinderNgRequestMapperInterface
@@ -110,8 +99,10 @@ class FactFinderNgFactory extends AbstractFactory
     public function createSearchHandler(): SearchHandlerInterface
     {
         return new FactFinderNgSearchHandler(
+            $this->createRequestMapper(),
+            $this->createAdapterFactory(),
+            $this->createResponseParser(),
             $this->createFactFinderNgSearchToElasticaMapper(),
-            $this->createRequestSender(),
             $this->getLocaleClient(),
             $this->getStoreClient()
         );
@@ -123,8 +114,25 @@ class FactFinderNgFactory extends AbstractFactory
     public function createSuggestHandler(): SearchHandlerInterface
     {
         return new FactFinderNgSuggestHandler(
-            $this->createFactFinderNgSuggestToElasticaMapper(),
-            $this->createRequestSender(),
+            $this->createRequestMapper(),
+            $this->createAdapterFactory(),
+            $this->createResponseParser(),
+            $this->createFactFinderNgSearchToElasticaMapper(),
+            $this->getLocaleClient(),
+            $this->getStoreClient()
+        );
+    }
+
+    /**
+     * @return SearchHandlerInterface
+     */
+    public function createNavigationHandler(): SearchHandlerInterface
+    {
+        return new FactFinderNavigationHandler(
+            $this->createRequestMapper(),
+            $this->createAdapterFactory(),
+            $this->createResponseParser(),
+            $this->createFactFinderNgSearchToElasticaMapper(),
             $this->getLocaleClient(),
             $this->getStoreClient()
         );

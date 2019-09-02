@@ -28,6 +28,13 @@ interface FactFinderNgRequestMapperInterface
     public function mapSuggestionRequest(array $requestParameters): FactFinderNgRequestTransfer;
 
     /**
+     * @param array $requestParameters
+     *
+     * @return FactFinderNgRequestTransfer
+     */
+    public function mapNavigationRequest(array $requestParameters): FactFinderNgRequestTransfer;
+
+    /**
      * @return FactFinderNgRequestTransfer
      */
     public function mapTriggerSearchImportRequest(): FactFinderNgRequestTransfer;

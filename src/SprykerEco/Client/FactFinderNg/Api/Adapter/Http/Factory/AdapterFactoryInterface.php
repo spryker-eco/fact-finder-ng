@@ -22,6 +22,11 @@ interface AdapterFactoryInterface
     public function createFactFinderNgSuggestionAdapter(): FactFinderNgAdapterInterface;
 
     /**
+     * @return \SprykerEco\Client\FactFinderNg\Api\Adapter\FactFinderNgAdapterInterface
+     */
+    public function createFactFinderNgNavigationAdapter(): FactFinderNgAdapterInterface;
+
+    /**
      * @return FactFinderNgAdapterInterface
      */
     public function createFactFinderImportSearchAdapter(): FactFinderNgAdapterInterface;

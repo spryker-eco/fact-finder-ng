@@ -1,10 +1,5 @@
 <?php
 
-/**
- * This file is part of the Spryker Suite.
- * For full license information, please view the LICENSE file that was distributed with this source code.
- */
-
 namespace SprykerEco\Client\FactFinderNg\Handler;
 
 use Elastica\Query;
@@ -12,21 +7,19 @@ use Exception;
 use Spryker\Client\Search\Exception\SearchResponseException;
 use Spryker\Client\Search\Model\Handler\SearchHandlerInterface;
 
-class FactFinderNgSuggestHandler extends FactFinderHandler implements SearchHandlerInterface
+class FactFinderNavigationHandler extends FactFinderHandler implements SearchHandlerInterface
 {
     /**
      * @param \Elastica\Query $query
      * @param array $requestParameters
-     *
-     * @throws \Spryker\Client\Search\Exception\SearchResponseException
      *
      * @return array
      */
     protected function executeQuery(Query $query, array $requestParameters): array
     {
         try {
-            $requestTransfer = $this->requestMapper->mapSuggestionRequest($requestParameters);
-            $response = $this->adapterFactory->createFactFinderNgSuggestionAdapter()->sendRequest($requestTransfer);
+            $requestTransfer = $this->requestMapper->mapNavigationRequest($requestParameters);
+            $response = $this->adapterFactory->createFactFinderNgNavigationAdapter()->sendRequest($requestTransfer);
             $responseTransfer = $this->responseParser->parseResponse($response);
             $searchResult = $responseTransfer->getBody();
         } catch (Exception $e) {

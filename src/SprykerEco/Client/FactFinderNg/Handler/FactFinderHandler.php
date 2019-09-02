@@ -9,15 +9,32 @@ namespace SprykerEco\Client\FactFinderNg\Handler;
 
 use Elastica\Query;
 use Elastica\ResultSet;
-use SprykerEco\Client\FactFinderNg\Api\RequestSender\RequestSenderInterface;
-use SprykerEco\Client\FactFinderNg\Mapper\Elastica\FactFinderToElasticaMapperInterface;
 use Spryker\Client\Locale\LocaleClientInterface;
 use Spryker\Client\Search\Dependency\Plugin\QueryInterface;
 use Spryker\Client\Search\Model\Handler\SearchHandlerInterface;
 use Spryker\Client\Store\StoreClientInterface;
+use SprykerEco\Client\FactFinderNg\Api\Adapter\Http\Factory\AdapterFactoryInterface;
+use SprykerEco\Client\FactFinderNg\Mapper\Elastica\FactFinderToElasticaMapperInterface;
+use SprykerEco\Client\FactFinderNg\Mapper\Request\FactFinderNgRequestMapperInterface;
+use SprykerEco\Client\FactFinderNg\Parser\ResponseParserInterface;
 
 abstract class FactFinderHandler implements SearchHandlerInterface
 {
+    /**
+     * @var FactFinderNgRequestMapperInterface
+     */
+    protected $requestMapper;
+
+    /**
+     * @var AdapterFactoryInterface
+     */
+    protected $adapterFactory;
+
+    /**
+     * @var ResponseParserInterface
+     */
+    protected $responseParser;
+
     /**
      * @var \SprykerEco\Client\FactFinderNg\Mapper\Elastica\FactFinderToElasticaMapperInterface
      */
@@ -34,24 +51,25 @@ abstract class FactFinderHandler implements SearchHandlerInterface
     protected $storeClient;
 
     /**
-     * @var \SprykerEco\Client\FactFinderNg\Api\RequestSender\RequestSenderInterface
-     */
-    protected $requestSender;
-
-    /**
+     * @param FactFinderNgRequestMapperInterface $factFinderNgRequestMapper
+     * @param AdapterFactoryInterface $adapterFactory
+     * @param ResponseParserInterface $responseParser
      * @param \SprykerEco\Client\FactFinderNg\Mapper\Elastica\FactFinderToElasticaMapperInterface $factFinderToElasticaMapper
-     * @param \SprykerEco\Client\FactFinderNg\Api\RequestSender\RequestSenderInterface $requestSender
      * @param \Spryker\Client\Locale\LocaleClientInterface $localeClient
      * @param \Spryker\Client\Store\StoreClientInterface $storeClient
      */
     public function __construct(
+        FactFinderNgRequestMapperInterface $factFinderNgRequestMapper,
+        AdapterFactoryInterface $adapterFactory,
+        ResponseParserInterface $responseParser,
         FactFinderToElasticaMapperInterface $factFinderToElasticaMapper,
-        RequestSenderInterface $requestSender,
         LocaleClientInterface $localeClient,
         StoreClientInterface $storeClient
     ) {
+        $this->requestMapper = $factFinderNgRequestMapper;
+        $this->adapterFactory = $adapterFactory;
+        $this->responseParser = $responseParser;
         $this->factFinderToElasticaMapper = $factFinderToElasticaMapper;
-        $this->requestSender = $requestSender;
         $this->localeClient = $localeClient;
         $this->storeClient = $storeClient;
     }

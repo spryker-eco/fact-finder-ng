@@ -25,8 +25,10 @@ class FactFinderNgSearchHandler extends FactFinderHandler implements SearchHandl
     protected function executeQuery(Query $query, array $requestParameters): array
     {
         try {
-            $factFinderNgResponseTransfer = $this->requestSender->sendSearchRequest($query, $requestParameters);
-            $searchResult = $factFinderNgResponseTransfer->getBody();
+            $requestTransfer = $this->requestMapper->mapSearchRequest($requestParameters);
+            $response = $this->adapterFactory->createFactFinderNgSearchAdapter()->sendRequest($requestTransfer);
+            $responseTransfer = $this->responseParser->parseResponse($response);
+            $searchResult = $responseTransfer->getBody();
         } catch (Exception $e) {
             throw new SearchResponseException(
                 sprintf("Search failed with the following reason: %s. Query: %s", $e->getMessage()),

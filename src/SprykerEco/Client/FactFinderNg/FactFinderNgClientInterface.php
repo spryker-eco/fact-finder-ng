@@ -47,6 +47,21 @@ interface FactFinderNgClientInterface
 
     /**
      * Specification:
+     * - Method send request to Fact finder for navigation results.
+     * - Request parameters will be mapped to Fact Finder suggestion parameters.
+     *
+     * @api
+     *
+     * @param \Spryker\Client\Search\Dependency\Plugin\QueryInterface $searchQuery
+     * @param \Spryker\Client\Search\Dependency\Plugin\ResultFormatterPluginInterface[] $resultFormatters
+     * @param array $requestParameters
+     *
+     * @return array|\Elastica\ResultSet
+     */
+    public function navigation(QueryInterface $searchQuery, array $resultFormatters = [], array $requestParameters = []);
+
+    /**
+     * Specification:
      * - Method send request to Fact finder for tracking checkout completed event.
      *
      * @api

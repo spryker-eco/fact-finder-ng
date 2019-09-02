@@ -55,6 +55,22 @@ class FactFinderNgClient extends AbstractClient implements FactFinderNgClientInt
      *
      * @api
      *
+     * @param QueryInterface $searchQuery
+     * @param array $resultFormatters
+     * @param array $requestParameters
+     *
+     * @return array|\Elastica\ResultSet|void
+     */
+    public function navigation(QueryInterface $searchQuery, array $resultFormatters = [], array $requestParameters = [])
+    {
+        return $this->getFactory()->createNavigationHandler()->search($searchQuery, $resultFormatters, $requestParameters);
+    }
+
+    /**
+     * {@inheritdoc}
+     *
+     * @api
+     *
      * @param CartOrCheckoutEventTransfer[] $cartOrCheckoutEventTransfers
      *
      * @return FactFinderNgResponseTransfer

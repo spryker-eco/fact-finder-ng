@@ -99,6 +99,27 @@ class FactFinderNgRequestMapper implements FactFinderNgRequestMapperInterface
         return $factFinderNgRequestTransfer;
     }
 
+    /**
+     * @param array $requestParameters
+     *
+     * @return FactFinderNgRequestTransfer
+     */
+    public function mapNavigationRequest(array $requestParameters): FactFinderNgRequestTransfer
+    {
+        $params = [
+            static::KEY_CHANNEL => $this->config->getFactFinderChannel(),
+        ];
+
+        $payload = [
+            static::KEY_PARAMS => $params,
+        ];
+
+        $factFinderNgRequestTransfer = new FactFinderNgRequestTransfer();
+        $factFinderNgRequestTransfer->setPayload($payload);
+
+        return $factFinderNgRequestTransfer;
+    }
+
 
     /**
      * @return FactFinderNgRequestTransfer
