@@ -30,8 +30,10 @@ class FactFinderNgSearchHandler extends FactFinderHandler implements SearchHandl
             $responseTransfer = $this->responseParser->parseResponse($response);
             $searchResult = $responseTransfer->getBody();
         } catch (Exception $e) {
+            $rawQuery = $this->utilEncodingService->encodeJson($query->toArray());
+
             throw new SearchResponseException(
-                sprintf("Search failed with the following reason: %s. Query: %s", $e->getMessage()),
+                sprintf("Search failed with the following reason: %s. Query: %s", $e->getMessage(), $rawQuery),
                 $e->getCode(),
                 $e
             );

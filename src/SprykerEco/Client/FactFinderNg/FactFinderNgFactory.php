@@ -104,7 +104,8 @@ class FactFinderNgFactory extends AbstractFactory
             $this->createResponseParser(),
             $this->createFactFinderNgSearchToElasticaMapper(),
             $this->getLocaleClient(),
-            $this->getStoreClient()
+            $this->getStoreClient(),
+            $this->getUtilEncodingService()
         );
     }
 
@@ -119,7 +120,8 @@ class FactFinderNgFactory extends AbstractFactory
             $this->createResponseParser(),
             $this->createFactFinderNgSearchToElasticaMapper(),
             $this->getLocaleClient(),
-            $this->getStoreClient()
+            $this->getStoreClient(),
+            $this->getUtilEncodingService()
         );
     }
 
@@ -134,7 +136,8 @@ class FactFinderNgFactory extends AbstractFactory
             $this->createResponseParser(),
             $this->createFactFinderNgSearchToElasticaMapper(),
             $this->getLocaleClient(),
-            $this->getStoreClient()
+            $this->getStoreClient(),
+            $this->getUtilEncodingService()
         );
     }
 
