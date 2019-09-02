@@ -79,8 +79,7 @@ class FactFinderNgClient extends AbstractClient implements FactFinderNgClientInt
     }
 
     /**
-     * Specification:
-     * - Method send request to Fact finder for tracking clicking by product event.
+     * {@inheritdoc}
      *
      * @api
      *
