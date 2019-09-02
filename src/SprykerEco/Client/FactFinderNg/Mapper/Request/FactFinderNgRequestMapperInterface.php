@@ -7,6 +7,7 @@
 
 namespace SprykerEco\Client\FactFinderNg\Mapper\Request;
 
+use Generated\Shared\Transfer\CartOrCheckoutEventTransfer;
 use Generated\Shared\Transfer\FactFinderNgRequestTransfer;
 
 interface FactFinderNgRequestMapperInterface
@@ -29,4 +30,22 @@ interface FactFinderNgRequestMapperInterface
      * @return FactFinderNgRequestTransfer
      */
     public function mapTriggerSearchImportRequest(): FactFinderNgRequestTransfer;
+
+    /**
+     * @param CartOrCheckoutEventTransfer[] $cartOrCheckoutEventTransfers
+     *
+     * @return FactFinderNgRequestTransfer
+     */
+    public function mapTrackCheckoutEventRequest(
+        array $cartOrCheckoutEventTransfers
+    ): FactFinderNgRequestTransfer;
+
+    /**
+     * @param CartOrCheckoutEventTransfer[] $cartOrCheckoutEventTransfers
+     *
+     * @return FactFinderNgRequestTransfer
+     */
+    public function mapTrackCartEventRequest(
+        array $cartOrCheckoutEventTransfers
+    ): FactFinderNgRequestTransfer;
 }

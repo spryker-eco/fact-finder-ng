@@ -7,6 +7,7 @@
 
 namespace SprykerEco\Client\FactFinderNg\Mapper\Request;
 
+use Generated\Shared\Transfer\CartOrCheckoutEventTransfer;
 use Generated\Shared\Transfer\FactFinderNgRequestTransfer;
 use SprykerEco\Client\FactFinderNg\FactFinderNgConfig;
 
@@ -105,6 +106,46 @@ class FactFinderNgRequestMapper implements FactFinderNgRequestMapperInterface
     {
         $factFinderNgRequestTransfer = new FactFinderNgRequestTransfer();
         $factFinderNgRequestTransfer->setPayload([]);
+
+        return $factFinderNgRequestTransfer;
+    }
+
+
+    /**
+     * @param CartOrCheckoutEventTransfer[] $cartOrCheckoutEventTransfers
+     *
+     * @return FactFinderNgRequestTransfer
+     */
+    public function mapTrackCheckoutEventRequest(array $cartOrCheckoutEventTransfers): FactFinderNgRequestTransfer
+    {
+        $payload = [];
+
+        foreach ($cartOrCheckoutEventTransfers as $cartOrCheckoutEventTransfer) {
+            $payload[] = $cartOrCheckoutEventTransfer->toArray();
+        }
+
+        $factFinderNgRequestTransfer = new FactFinderNgRequestTransfer();
+        $factFinderNgRequestTransfer->setPayload($payload);
+
+        return $factFinderNgRequestTransfer;
+    }
+
+
+    /**
+     * @param CartOrCheckoutEventTransfer[] $cartOrCheckoutEventTransfers
+     *
+     * @return FactFinderNgRequestTransfer
+     */
+    public function mapTrackCartEventRequest(array $cartOrCheckoutEventTransfers): FactFinderNgRequestTransfer
+    {
+        $payload = [];
+
+        foreach ($cartOrCheckoutEventTransfers as $cartOrCheckoutEventTransfer) {
+            $payload[] = $cartOrCheckoutEventTransfer->toArray();
+        }
+
+        $factFinderNgRequestTransfer = new FactFinderNgRequestTransfer();
+        $factFinderNgRequestTransfer->setPayload($payload);
 
         return $factFinderNgRequestTransfer;
     }

@@ -7,6 +7,7 @@
 
 namespace SprykerEco\Client\FactFinderNg;
 
+use Generated\Shared\Transfer\CartOrCheckoutEventTransfer;
 use Generated\Shared\Transfer\FactFinderNgResponseTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
 use Spryker\Client\Search\Dependency\Plugin\QueryInterface;
@@ -49,11 +50,23 @@ interface FactFinderNgClientInterface
      *
      * @api
      *
-     * @param QuoteTransfer $quoteTransfer
+     * @param CartOrCheckoutEventTransfer[] $cartOrCheckoutEventTransfers
      *
      * @return FactFinderNgResponseTransfer
      */
-    public function trackCheckout(QuoteTransfer $quoteTransfer): FactFinderNgResponseTransfer;
+    public function trackCheckoutEvent(array $cartOrCheckoutEventTransfers): FactFinderNgResponseTransfer;
+
+    /**
+     * Specification:
+     * - Method send request to Fact finder for tracking checkout completed event.
+     *
+     * @api
+     *
+     * @param CartOrCheckoutEventTransfer[] $cartOrCheckoutEventTransfers
+     *
+     * @return FactFinderNgResponseTransfer
+     */
+    public function trackCartEvent(array $cartOrCheckoutEventTransfers): FactFinderNgResponseTransfer;
 
     /**
      * Specification:

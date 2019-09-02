@@ -7,8 +7,8 @@
 
 namespace SprykerEco\Client\FactFinderNg;
 
+use Generated\Shared\Transfer\CartOrCheckoutEventTransfer;
 use Generated\Shared\Transfer\FactFinderNgResponseTransfer;
-use Generated\Shared\Transfer\QuoteTransfer;
 use Spryker\Client\Kernel\AbstractClient;
 use Spryker\Client\Search\Dependency\Plugin\QueryInterface;
 
@@ -54,13 +54,27 @@ class FactFinderNgClient extends AbstractClient implements FactFinderNgClientInt
      *
      * @api
      *
-     * @param QuoteTransfer $quoteTransfer
+     * @param CartOrCheckoutEventTransfer[] $cartOrCheckoutEventTransfers
      *
      * @return FactFinderNgResponseTransfer
      */
-    public function trackCheckout(QuoteTransfer $quoteTransfer): FactFinderNgResponseTransfer
+    public function trackCheckoutEvent(array $cartOrCheckoutEventTransfers): FactFinderNgResponseTransfer
     {
-        return $this->getFactory()->createTrackCheckoutProcessor()->processApiRequest($quoteTransfer);
+        return $this->getFactory()->createCheckoutEventTracker()->track($cartOrCheckoutEventTransfers);
+    }
+
+    /**
+     * {@inheritdoc}
+     *
+     * @api
+     *
+     * @param CartOrCheckoutEventTransfer[] $cartOrCheckoutEventTransfers
+     *
+     * @return FactFinderNgResponseTransfer
+     */
+    public function trackCartEvent(array $cartOrCheckoutEventTransfers): FactFinderNgResponseTransfer
+    {
+        return $this->getFactory()->createCartEventTracker()->track($cartOrCheckoutEventTransfers);
     }
 
     /**

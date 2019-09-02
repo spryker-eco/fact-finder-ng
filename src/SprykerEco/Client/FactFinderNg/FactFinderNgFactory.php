@@ -15,6 +15,9 @@ use SprykerEco\Client\FactFinderNg\Api\Client\FactFinderNgHttpClient;
 use SprykerEco\Client\FactFinderNg\Api\RequestSender\RequestSender;
 use SprykerEco\Client\FactFinderNg\Api\RequestSender\RequestSenderInterface;
 use SprykerEco\Client\FactFinderNg\Dependency\Service\FactFinderNgToUtilEncodingServiceInterface;
+use SprykerEco\Client\FactFinderNg\EventTracker\CartEventTracker;
+use SprykerEco\Client\FactFinderNg\EventTracker\CheckoutEventTracker;
+use SprykerEco\Client\FactFinderNg\EventTracker\EventTrackerInterface;
 use SprykerEco\Client\FactFinderNg\Handler\FactFinderNgSearchHandler;
 use SprykerEco\Client\FactFinderNg\Handler\FactFinderNgSuggestHandler;
 use SprykerEco\Client\FactFinderNg\ImportTrigger\ImportTriggerInterface;
@@ -201,26 +204,6 @@ class FactFinderNgFactory extends AbstractFactory
     }
 
     /**
-     * @return TrackApiRequestMapperInterface
-     */
-    public function createTrackApiRequestMapper(): TrackApiRequestMapperInterface
-    {
-        return new TrackApiRequestMapper();
-    }
-
-    /**
-     * @return TrackCheckoutProcessor
-     */
-    public function createTrackCheckoutProcessor(): TrackCheckoutProcessor
-    {
-        return new TrackCheckoutProcessor(
-            $this->createTrackApiRequestMapper(),
-            $this->createAdapterFactory(),
-            $this->createResponseParser()
-        );
-    }
-
-    /**
      * @return ImportTriggerInterface
      */
     public function createSearchImportTrigger(): ImportTriggerInterface
@@ -229,6 +212,30 @@ class FactFinderNgFactory extends AbstractFactory
             $this->createRequestMapper(),
             $this->createResponseParser(),
             $this->createAdapterFactory()
+        );
+    }
+
+    /**
+     * @return EventTrackerInterface
+     */
+    public function createCheckoutEventTracker(): EventTrackerInterface
+    {
+        return new CheckoutEventTracker(
+            $this->createRequestMapper(),
+            $this->createAdapterFactory(),
+            $this->createResponseParser()
+        );
+    }
+
+    /**
+     * @return EventTrackerInterface
+     */
+    public function createCartEventTracker(): EventTrackerInterface
+    {
+        return new CartEventTracker(
+            $this->createRequestMapper(),
+            $this->createAdapterFactory(),
+            $this->createResponseParser()
         );
     }
 }
