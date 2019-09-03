@@ -29,6 +29,11 @@ class FactFinderNgRequestMapper implements FactFinderNgRequestMapperInterface
     public const KEY_TYPE = 'type';
     public const KEY_VALUE = 'value';
 
+    public const DEFAULT_VALUE_POS_PARAM = 1;
+    public const DEFAULT_VALUE_PAGE_PARAM = 1;
+    public const DEFAULT_VALUE_QUERY_PARAM = 'query';
+
+
     public const TYPE_OR = 'or';
     public const TYPE_AND = 'and';
 
@@ -182,6 +187,10 @@ class FactFinderNgRequestMapper implements FactFinderNgRequestMapperInterface
         $payload = [];
 
         foreach ($clickEventTransfers as $clickEventTransfer) {
+            $clickEventTransfer->setPos($clickEventTransfer->getPos() ?? static::DEFAULT_VALUE_POS_PARAM);
+            $clickEventTransfer->setPage($clickEventTransfer->getPage() ?? static::DEFAULT_VALUE_PAGE_PARAM);
+            $clickEventTransfer->setQuery($clickEventTransfer->getQuery() ?? static::DEFAULT_VALUE_QUERY_PARAM);
+
             $payload[] = $clickEventTransfer->toArray();
         }
 

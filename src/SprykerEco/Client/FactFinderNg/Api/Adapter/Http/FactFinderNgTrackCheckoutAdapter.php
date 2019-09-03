@@ -22,7 +22,7 @@ class FactFinderNgTrackCheckoutAdapter extends FactFinderAbstractAdapter
             static::FACT_FINDER_URL_TYPE_URL,
             static::FACT_FINDER_URL_VERSION,
             static::FACT_FINDER_URL_TRACK,
-            $this->getChannel($factFinderNgRequestTransfer),
+            $this->getChannel(),
             static::FACT_FINDER_URL_CHECKOUT
         );
     }
@@ -40,8 +40,8 @@ class FactFinderNgTrackCheckoutAdapter extends FactFinderAbstractAdapter
      *
      * @return string
      */
-    protected function getChannel(FactFinderNgRequestTransfer $factFinderNgRequestTransfer): string
+    protected function getChannel(): string
     {
-        return $factFinderNgRequestTransfer->getPayload()[FactFinderNgRequestMapper::KEY_PARAMS][FactFinderNgRequestMapper::KEY_CHANNEL];
+        return $this->config->getFactFinderChannel();
     }
 }
