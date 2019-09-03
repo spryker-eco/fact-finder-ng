@@ -32,6 +32,7 @@ class FactFinderNgRequestMapper implements FactFinderNgRequestMapperInterface
     public const DEFAULT_VALUE_POS_PARAM = 1;
     public const DEFAULT_VALUE_PAGE_PARAM = 1;
     public const DEFAULT_VALUE_QUERY_PARAM = 'query';
+    public const DEFAULT_VALUE_PAGE_SIZE_PARAM = 12;
 
 
     public const TYPE_OR = 'or';
@@ -148,7 +149,10 @@ class FactFinderNgRequestMapper implements FactFinderNgRequestMapperInterface
         $payload = [];
 
         foreach ($cartOrCheckoutEventTransfers as $cartOrCheckoutEventTransfer) {
-            $payload[] = $cartOrCheckoutEventTransfer->toArray();
+            $cartOrCheckoutEventTransfer->requireSid();
+            $cartOrCheckoutEventTransfer->requireId();
+
+            $payload[] = $cartOrCheckoutEventTransfer->toArray(true, true);
         }
 
         $factFinderNgRequestTransfer = new FactFinderNgRequestTransfer();
@@ -168,7 +172,10 @@ class FactFinderNgRequestMapper implements FactFinderNgRequestMapperInterface
         $payload = [];
 
         foreach ($cartOrCheckoutEventTransfers as $cartOrCheckoutEventTransfer) {
-            $payload[] = $cartOrCheckoutEventTransfer->toArray();
+            $cartOrCheckoutEventTransfer->requireSid();
+            $cartOrCheckoutEventTransfer->requireId();
+
+            $payload[] = $cartOrCheckoutEventTransfer->toArray(true, true);
         }
 
         $factFinderNgRequestTransfer = new FactFinderNgRequestTransfer();
@@ -190,8 +197,13 @@ class FactFinderNgRequestMapper implements FactFinderNgRequestMapperInterface
             $clickEventTransfer->setPos($clickEventTransfer->getPos() ?? static::DEFAULT_VALUE_POS_PARAM);
             $clickEventTransfer->setPage($clickEventTransfer->getPage() ?? static::DEFAULT_VALUE_PAGE_PARAM);
             $clickEventTransfer->setQuery($clickEventTransfer->getQuery() ?? static::DEFAULT_VALUE_QUERY_PARAM);
+            $clickEventTransfer->setOrigPos($clickEventTransfer->getOrigPos() ?? static::DEFAULT_VALUE_POS_PARAM);
+            $clickEventTransfer->setOrigPageSize($clickEventTransfer->getOrigPageSize() ?? static::DEFAULT_VALUE_PAGE_SIZE_PARAM);
 
-            $payload[] = $clickEventTransfer->toArray();
+            $clickEventTransfer->requireSid();
+            $clickEventTransfer->requireId();
+
+            $payload[] = $clickEventTransfer->toArray(true, true);
         }
 
         $factFinderNgRequestTransfer = new FactFinderNgRequestTransfer();

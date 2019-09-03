@@ -35,7 +35,7 @@
         <property name="score" type="float" />
         <property name="sid" type="string" />
         <property name="title" type="string" />
-        <property name="userID" type="string" />
+        <property name="userId" type="string" />
     </transfer>
 
     <transfer name="FactFinderNgResponse">
