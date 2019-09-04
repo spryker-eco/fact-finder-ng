@@ -116,6 +116,11 @@ class FactFinderNgRequestMapper implements FactFinderNgRequestMapperInterface
             static::KEY_CHANNEL => $this->config->getFactFinderChannel(),
         ];
 
+        $params = $this->addPageParam($params, $requestParameters);
+        $params = $this->addHitsPerPageParam($params, $requestParameters);
+        $params = $this->addSortItemsParam($params, $requestParameters);
+        $params = $this->addFiltersParam($params, $requestParameters);
+
         $payload = [
             static::KEY_PARAMS => $params,
         ];

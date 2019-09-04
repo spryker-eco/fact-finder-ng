@@ -118,7 +118,7 @@ class FactFinderNgFactory extends AbstractFactory
             $this->createRequestMapper(),
             $this->createAdapterFactory(),
             $this->createResponseParser(),
-            $this->createFactFinderNgSearchToElasticaMapper(),
+            $this->createFactFinderNgSuggestToElasticaMapper(),
             $this->getLocaleClient(),
             $this->getStoreClient(),
             $this->getUtilEncodingService()
