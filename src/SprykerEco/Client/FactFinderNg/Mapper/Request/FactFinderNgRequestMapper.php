@@ -42,6 +42,7 @@ class FactFinderNgRequestMapper implements FactFinderNgRequestMapperInterface
     public const KEY_REQUEST_PARAMETER_PAGE = 'page';
     public const KEY_REQUEST_PARAMETER_IPP = 'ipp';
     public const KEY_REQUEST_PARAMETER_SORT = 'sort';
+    public const KEY_REQUEST_PARAMETER_CATEGORY = 'category';
 
     public const DEFAULT_IPP_VALUE = 12;
     public const DEFAULT_PAGE_VALUE = 1;
@@ -292,6 +293,7 @@ class FactFinderNgRequestMapper implements FactFinderNgRequestMapperInterface
             static::KEY_REQUEST_PARAMETER_PAGE,
             static::KEY_REQUEST_PARAMETER_Q,
             static::KEY_REQUEST_PARAMETER_SORT,
+            static::KEY_REQUEST_PARAMETER_CATEGORY,
         ];
 
         $filters = [];
