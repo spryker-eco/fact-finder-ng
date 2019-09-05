@@ -329,7 +329,7 @@ class FactFinderNgRequestMapper implements FactFinderNgRequestMapperInterface
             $filterValues[] = [
                 static::KEY_EXCLUDE => false,
                 static::KEY_TYPE => static::TYPE_OR,
-                static::KEY_VALUE => $value,
+                static::KEY_VALUE => urlencode($value),
             ];
         }
 
@@ -346,7 +346,7 @@ class FactFinderNgRequestMapper implements FactFinderNgRequestMapperInterface
         $filterValues[] = [
             static::KEY_EXCLUDE => false,
             static::KEY_TYPE => static::TYPE_AND,
-            static::KEY_VALUE => $value,
+            static::KEY_VALUE => urlencode($value),
         ];
 
         return $filterValues;
