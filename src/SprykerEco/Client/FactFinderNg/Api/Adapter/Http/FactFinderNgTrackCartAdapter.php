@@ -23,7 +23,7 @@ class FactFinderNgTrackCartAdapter extends FactFinderAbstractAdapter
     {
         return sprintf(
             '%s/%s/%s/%s/%s/%s',
-            static::FACT_FINDER_URL_BASE,
+            $this->config->getFactFinderUrl(),
             static::FACT_FINDER_URL_TYPE_URL,
             static::FACT_FINDER_URL_VERSION,
             static::FACT_FINDER_URL_TRACK,

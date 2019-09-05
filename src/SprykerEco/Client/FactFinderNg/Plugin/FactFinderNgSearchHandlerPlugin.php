@@ -7,14 +7,13 @@
 
 namespace SprykerEco\Client\FactFinderNg\Plugin;
 
-use Pyz\Client\Search\Plugin\SearchHandlerPluginInterface;
 use Spryker\Client\Kernel\AbstractPlugin;
 use Spryker\Client\Search\Dependency\Plugin\QueryInterface;
 
 /**
  * @method \SprykerEco\Client\FactFinderNg\FactFinderNgClientInterface getClient()
  */
-class FactFinderNgSearchHandlerPlugin extends AbstractPlugin implements SearchHandlerPluginInterface
+class FactFinderNgSearchHandlerPlugin extends AbstractPlugin
 {
     /**
      * @param \Spryker\Client\Search\Dependency\Plugin\QueryInterface $searchQuery

@@ -35,4 +35,12 @@ class FactFinderNgConfig extends AbstractBundleConfig
     {
         return $this->get(FactFinderNgConstants::FACT_FINDER_CHANNEL);
     }
+
+    /**
+     * @return string
+     */
+    public function getFactFinderUrl(): string
+    {
+        return $this->get(FactFinderNgConstants::FACT_FINDER_URL);
+    }
 }
