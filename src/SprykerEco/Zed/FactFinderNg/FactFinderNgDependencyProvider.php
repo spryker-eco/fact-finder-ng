@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * MIT License
+ * For full license information, please view the LICENSE file that was distributed with this source code.
+ */
+
 namespace SprykerEco\Zed\FactFinderNg;
 
 use Spryker\Zed\Kernel\AbstractBundleDependencyProvider;
@@ -10,9 +15,9 @@ class FactFinderNgDependencyProvider extends AbstractBundleDependencyProvider
     public const CLIENT_FACT_FINDER_NG = 'CLIENT_FACT_FINDER_NG';
 
     /**
-     * @param Container $container
+     * @param \Spryker\Zed\Kernel\Container $container
      *
-     * @return Container
+     * @return \Spryker\Zed\Kernel\Container
      */
     public function provideCommunicationLayerDependencies(Container $container): Container
     {
@@ -22,9 +27,9 @@ class FactFinderNgDependencyProvider extends AbstractBundleDependencyProvider
     }
 
     /**
-     * @param Container $container
+     * @param \Spryker\Zed\Kernel\Container $container
      *
-     * @return Container
+     * @return \Spryker\Zed\Kernel\Container
      */
     protected function addFactFinderNgClient(Container $container): Container
     {

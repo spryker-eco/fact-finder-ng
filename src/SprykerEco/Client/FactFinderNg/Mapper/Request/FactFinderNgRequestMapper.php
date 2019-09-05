@@ -1,14 +1,12 @@
 <?php
 
 /**
- * This file is part of the Spryker Suite.
+ * MIT License
  * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
 namespace SprykerEco\Client\FactFinderNg\Mapper\Request;
 
-use Generated\Shared\Transfer\CartOrCheckoutEventTransfer;
-use Generated\Shared\Transfer\ClickEventTransfer;
 use Generated\Shared\Transfer\FactFinderNgRequestTransfer;
 use SprykerEco\Client\FactFinderNg\FactFinderNgConfig;
 
@@ -33,7 +31,6 @@ class FactFinderNgRequestMapper implements FactFinderNgRequestMapperInterface
     public const DEFAULT_VALUE_PAGE_PARAM = 1;
     public const DEFAULT_VALUE_QUERY_PARAM = 'query';
     public const DEFAULT_VALUE_PAGE_SIZE_PARAM = 12;
-
 
     public const TYPE_OR = 'or';
     public const TYPE_AND = 'and';
@@ -109,7 +106,7 @@ class FactFinderNgRequestMapper implements FactFinderNgRequestMapperInterface
     /**
      * @param array $requestParameters
      *
-     * @return FactFinderNgRequestTransfer
+     * @return \Generated\Shared\Transfer\FactFinderNgRequestTransfer
      */
     public function mapNavigationRequest(array $requestParameters): FactFinderNgRequestTransfer
     {
@@ -132,9 +129,8 @@ class FactFinderNgRequestMapper implements FactFinderNgRequestMapperInterface
         return $factFinderNgRequestTransfer;
     }
 
-
     /**
-     * @return FactFinderNgRequestTransfer
+     * @return \Generated\Shared\Transfer\FactFinderNgRequestTransfer
      */
     public function mapTriggerSearchImportRequest(): FactFinderNgRequestTransfer
     {
@@ -144,11 +140,10 @@ class FactFinderNgRequestMapper implements FactFinderNgRequestMapperInterface
         return $factFinderNgRequestTransfer;
     }
 
-
     /**
-     * @param CartOrCheckoutEventTransfer[] $cartOrCheckoutEventTransfers
+     * @param \Generated\Shared\Transfer\CartOrCheckoutEventTransfer[] $cartOrCheckoutEventTransfers
      *
-     * @return FactFinderNgRequestTransfer
+     * @return \Generated\Shared\Transfer\FactFinderNgRequestTransfer
      */
     public function mapTrackCheckoutEventRequest(array $cartOrCheckoutEventTransfers): FactFinderNgRequestTransfer
     {
@@ -167,11 +162,10 @@ class FactFinderNgRequestMapper implements FactFinderNgRequestMapperInterface
         return $factFinderNgRequestTransfer;
     }
 
-
     /**
-     * @param CartOrCheckoutEventTransfer[] $cartOrCheckoutEventTransfers
+     * @param \Generated\Shared\Transfer\CartOrCheckoutEventTransfer[] $cartOrCheckoutEventTransfers
      *
-     * @return FactFinderNgRequestTransfer
+     * @return \Generated\Shared\Transfer\FactFinderNgRequestTransfer
      */
     public function mapTrackCartEventRequest(array $cartOrCheckoutEventTransfers): FactFinderNgRequestTransfer
     {
@@ -191,9 +185,9 @@ class FactFinderNgRequestMapper implements FactFinderNgRequestMapperInterface
     }
 
     /**
-     * @param ClickEventTransfer[] $clickEventTransfers
+     * @param \Generated\Shared\Transfer\ClickEventTransfer[] $clickEventTransfers
      *
-     * @return FactFinderNgRequestTransfer
+     * @return \Generated\Shared\Transfer\FactFinderNgRequestTransfer
      */
     public function mapTrackClickEventRequest(array $clickEventTransfers): FactFinderNgRequestTransfer
     {

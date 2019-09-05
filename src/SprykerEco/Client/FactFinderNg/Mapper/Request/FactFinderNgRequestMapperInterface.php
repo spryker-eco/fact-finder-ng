@@ -1,14 +1,12 @@
 <?php
 
 /**
- * This file is part of the Spryker Suite.
+ * MIT License
  * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
 namespace SprykerEco\Client\FactFinderNg\Mapper\Request;
 
-use Generated\Shared\Transfer\CartOrCheckoutEventTransfer;
-use Generated\Shared\Transfer\ClickEventTransfer;
 use Generated\Shared\Transfer\FactFinderNgRequestTransfer;
 
 interface FactFinderNgRequestMapperInterface
@@ -30,37 +28,37 @@ interface FactFinderNgRequestMapperInterface
     /**
      * @param array $requestParameters
      *
-     * @return FactFinderNgRequestTransfer
+     * @return \Generated\Shared\Transfer\FactFinderNgRequestTransfer
      */
     public function mapNavigationRequest(array $requestParameters): FactFinderNgRequestTransfer;
 
     /**
-     * @return FactFinderNgRequestTransfer
+     * @return \Generated\Shared\Transfer\FactFinderNgRequestTransfer
      */
     public function mapTriggerSearchImportRequest(): FactFinderNgRequestTransfer;
 
     /**
-     * @param CartOrCheckoutEventTransfer[] $cartOrCheckoutEventTransfers
+     * @param \Generated\Shared\Transfer\CartOrCheckoutEventTransfer[] $cartOrCheckoutEventTransfers
      *
-     * @return FactFinderNgRequestTransfer
+     * @return \Generated\Shared\Transfer\FactFinderNgRequestTransfer
      */
     public function mapTrackCheckoutEventRequest(
         array $cartOrCheckoutEventTransfers
     ): FactFinderNgRequestTransfer;
 
     /**
-     * @param CartOrCheckoutEventTransfer[] $cartOrCheckoutEventTransfers
+     * @param \Generated\Shared\Transfer\CartOrCheckoutEventTransfer[] $cartOrCheckoutEventTransfers
      *
-     * @return FactFinderNgRequestTransfer
+     * @return \Generated\Shared\Transfer\FactFinderNgRequestTransfer
      */
     public function mapTrackCartEventRequest(
         array $cartOrCheckoutEventTransfers
     ): FactFinderNgRequestTransfer;
 
     /**
-     * @param ClickEventTransfer[] $clickEventTransfers
+     * @param \Generated\Shared\Transfer\ClickEventTransfer[] $clickEventTransfers
      *
-     * @return FactFinderNgRequestTransfer
+     * @return \Generated\Shared\Transfer\FactFinderNgRequestTransfer
      */
     public function mapTrackClickEventRequest(
         array $clickEventTransfers

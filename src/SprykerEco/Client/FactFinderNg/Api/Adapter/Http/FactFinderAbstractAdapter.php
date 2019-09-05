@@ -1,24 +1,19 @@
 <?php
 
 /**
- * This file is part of the Spryker Suite.
+ * MIT License
  * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
 namespace SprykerEco\Client\FactFinderNg\Api\Adapter\Http;
 
 use Generated\Shared\Transfer\FactFinderNgRequestTransfer;
-use Generated\Shared\Transfer\FactFinderNgResponseErrorTransfer;
-use Generated\Shared\Transfer\FactFinderNgResponseTransfer;
 use GuzzleHttp\ClientInterface;
-use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\RequestOptions;
 use Psr\Http\Message\ResponseInterface;
-use Spryker\Shared\Kernel\Transfer\AbstractTransfer;
 use SprykerEco\Client\FactFinderNg\Api\Adapter\FactFinderNgAdapterInterface;
 use SprykerEco\Client\FactFinderNg\Dependency\Service\FactFinderNgToUtilEncodingServiceInterface;
 use SprykerEco\Client\FactFinderNg\FactFinderNgConfig;
-use SprykerEco\Client\FactFinderNg\Mapper\Request\FactFinderNgRequestMapper;
 
 abstract class FactFinderAbstractAdapter implements FactFinderNgAdapterInterface
 {
@@ -73,11 +68,11 @@ abstract class FactFinderAbstractAdapter implements FactFinderNgAdapterInterface
     }
 
     /**
-     * @param \Generated\Shared\Transfer\FactFinderNgRequestTransfer|AbstractTransfer $factFinderNgRequestTransfer
+     * @param \Generated\Shared\Transfer\FactFinderNgRequestTransfer $factFinderNgRequestTransfer
      *
-     * @return ResponseInterface
+     * @return \Psr\Http\Message\ResponseInterface
      */
-    public function sendRequest(AbstractTransfer $factFinderNgRequestTransfer): ResponseInterface
+    public function sendRequest(FactFinderNgRequestTransfer $factFinderNgRequestTransfer): ResponseInterface
     {
         $url = $this->getUrl($factFinderNgRequestTransfer);
         $method = $this->getMethod();
@@ -91,7 +86,7 @@ abstract class FactFinderAbstractAdapter implements FactFinderNgAdapterInterface
      * @param string $url
      * @param array $options
      *
-     * @return ResponseInterface
+     * @return \Psr\Http\Message\ResponseInterface
      */
     protected function send(string $method, string $url, array $options = []): ResponseInterface
     {
@@ -99,12 +94,13 @@ abstract class FactFinderAbstractAdapter implements FactFinderNgAdapterInterface
     }
 
     /**
-     * @param FactFinderNgRequestTransfer|AbstractTransfer $factFinderNgRequestTransfer
+     * @param \Generated\Shared\Transfer\FactFinderNgRequestTransfer $factFinderNgRequestTransfer
      *
      * @return array
      */
-    protected function getOptions(AbstractTransfer $factFinderNgRequestTransfer): array
+    protected function getOptions(FactFinderNgRequestTransfer $factFinderNgRequestTransfer): array
     {
+        /** @var \Generated\Shared\Transfer\FactFinderNgRequestTransfer $factFinderNgRequestTransfer */
         $options[RequestOptions::BODY] = $this->utilEncodingService->encodeJson($factFinderNgRequestTransfer->getPayload());
         $options[RequestOptions::HEADERS] = $this->getHeaders();
         $options[RequestOptions::AUTH] = $this->getAuth();

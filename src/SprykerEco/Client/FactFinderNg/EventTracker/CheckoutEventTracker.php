@@ -1,8 +1,12 @@
 <?php
 
+/**
+ * MIT License
+ * For full license information, please view the LICENSE file that was distributed with this source code.
+ */
+
 namespace SprykerEco\Client\FactFinderNg\EventTracker;
 
-use Generated\Shared\Transfer\CartOrCheckoutEventTransfer;
 use Generated\Shared\Transfer\FactFinderNgResponseTransfer;
 use SprykerEco\Client\FactFinderNg\Api\Adapter\Http\Factory\AdapterFactoryInterface;
 use SprykerEco\Client\FactFinderNg\Mapper\Request\FactFinderNgRequestMapperInterface;
@@ -11,7 +15,7 @@ use SprykerEco\Client\FactFinderNg\Parser\ResponseParserInterface;
 class CheckoutEventTracker implements EventTrackerInterface
 {
     /**
-     * @var FactFinderNgRequestMapperInterface
+     * @var \SprykerEco\Client\FactFinderNg\Mapper\Request\FactFinderNgRequestMapperInterface
      */
     protected $requestMapper;
 
@@ -21,14 +25,14 @@ class CheckoutEventTracker implements EventTrackerInterface
     protected $adapterFactory;
 
     /**
-     * @var ResponseParserInterface
+     * @var \SprykerEco\Client\FactFinderNg\Parser\ResponseParserInterface
      */
     protected $responseParser;
 
     /**
-     * @param FactFinderNgRequestMapperInterface $requestMapper
-     * @param AdapterFactoryInterface $adapterFactory
-     * @param ResponseParserInterface $responseParser
+     * @param \SprykerEco\Client\FactFinderNg\Mapper\Request\FactFinderNgRequestMapperInterface $requestMapper
+     * @param \SprykerEco\Client\FactFinderNg\Api\Adapter\Http\Factory\AdapterFactoryInterface $adapterFactory
+     * @param \SprykerEco\Client\FactFinderNg\Parser\ResponseParserInterface $responseParser
      */
     public function __construct(
         FactFinderNgRequestMapperInterface $requestMapper,
@@ -41,9 +45,9 @@ class CheckoutEventTracker implements EventTrackerInterface
     }
 
     /**
-     * @param CartOrCheckoutEventTransfer[] $eventTransfers
+     * @param \Generated\Shared\Transfer\CartOrCheckoutEventTransfer[] $eventTransfers
      *
-     * @return FactFinderNgResponseTransfer
+     * @return \Generated\Shared\Transfer\FactFinderNgResponseTransfer
      */
     public function track(array $eventTransfers): FactFinderNgResponseTransfer
     {

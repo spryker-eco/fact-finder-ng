@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This file is part of the Spryker Suite.
+ * MIT License
  * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
@@ -32,9 +32,9 @@ class ResponseParser implements ResponseParserInterface
     }
 
     /**
-     * @param ResponseInterface $response
+     * @param \Psr\Http\Message\ResponseInterface $response
      *
-     * @return FactFinderNgResponseTransfer
+     * @return \Generated\Shared\Transfer\FactFinderNgResponseTransfer
      */
     public function parseResponse(ResponseInterface $response): FactFinderNgResponseTransfer
     {
@@ -42,7 +42,6 @@ class ResponseParser implements ResponseParserInterface
         $responseBody = $this->utilEncodingService->decodeJson($response->getBody(), true);
 
         if ($response->getStatusCode() >= 400) {
-
             $errorTransfer = new FactFinderNgResponseErrorTransfer();
             $errorTransfer->setError($responseBody[static::RESPONSE_KEY_ERROR]);
             $errorTransfer->setErrorDescription($responseBody[static::RESPONSE_KEY_ERROR_DESCRIPTION]);

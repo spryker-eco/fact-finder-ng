@@ -1,8 +1,11 @@
 <?php
 
+/**
+ * MIT License
+ * For full license information, please view the LICENSE file that was distributed with this source code.
+ */
 
 namespace SprykerEco\Client\FactFinderNg\Api\Adapter\Http;
-
 
 use Generated\Shared\Transfer\FactFinderNgRequestTransfer;
 use Symfony\Component\HttpFoundation\Request;
@@ -19,7 +22,8 @@ class FactFinderNgImportSearchAdapter extends FactFinderAbstractAdapter
      */
     protected function getUrl(FactFinderNgRequestTransfer $factFinderNgRequestTransfer): string
     {
-        return sprintf('%s/%s/%s/%s/%s?channel=%s',
+        return sprintf(
+            '%s/%s/%s/%s/%s?channel=%s',
             static::FACT_FINDER_URL_BASE,
             static::FACT_FINDER_URL_TYPE_URL,
             static::FACT_FINDER_URL_VERSION,
@@ -37,6 +41,9 @@ class FactFinderNgImportSearchAdapter extends FactFinderAbstractAdapter
         return Request::METHOD_POST;
     }
 
+    /**
+     * @return string
+     */
     protected function getChannel(): string
     {
         return $this->config->getFactFinderChannel();

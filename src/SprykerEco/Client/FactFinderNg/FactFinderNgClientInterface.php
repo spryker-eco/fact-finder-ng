@@ -1,16 +1,13 @@
 <?php
 
 /**
- * This file is part of the Spryker Suite.
+ * MIT License
  * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
 namespace SprykerEco\Client\FactFinderNg;
 
-use Generated\Shared\Transfer\CartOrCheckoutEventTransfer;
-use Generated\Shared\Transfer\ClickEventTransfer;
 use Generated\Shared\Transfer\FactFinderNgResponseTransfer;
-use Generated\Shared\Transfer\QuoteTransfer;
 use Spryker\Client\Search\Dependency\Plugin\QueryInterface;
 
 interface FactFinderNgClientInterface
@@ -66,9 +63,9 @@ interface FactFinderNgClientInterface
      *
      * @api
      *
-     * @param CartOrCheckoutEventTransfer[] $cartOrCheckoutEventTransfers
+     * @param \Generated\Shared\Transfer\CartOrCheckoutEventTransfer[] $cartOrCheckoutEventTransfers
      *
-     * @return FactFinderNgResponseTransfer
+     * @return \Generated\Shared\Transfer\FactFinderNgResponseTransfer
      */
     public function trackCheckoutEvent(array $cartOrCheckoutEventTransfers): FactFinderNgResponseTransfer;
 
@@ -78,9 +75,9 @@ interface FactFinderNgClientInterface
      *
      * @api
      *
-     * @param CartOrCheckoutEventTransfer[] $cartOrCheckoutEventTransfers
+     * @param \Generated\Shared\Transfer\CartOrCheckoutEventTransfer[] $cartOrCheckoutEventTransfers
      *
-     * @return FactFinderNgResponseTransfer
+     * @return \Generated\Shared\Transfer\FactFinderNgResponseTransfer
      */
     public function trackCartEvent(array $cartOrCheckoutEventTransfers): FactFinderNgResponseTransfer;
 
@@ -90,9 +87,9 @@ interface FactFinderNgClientInterface
      *
      * @api
      *
-     * @param ClickEventTransfer[] $clickEventTransfers
+     * @param \Generated\Shared\Transfer\ClickEventTransfer[] $clickEventTransfers
      *
-     * @return FactFinderNgResponseTransfer
+     * @return \Generated\Shared\Transfer\FactFinderNgResponseTransfer
      */
     public function trackClickEvent(array $clickEventTransfers): FactFinderNgResponseTransfer;
 
@@ -103,7 +100,7 @@ interface FactFinderNgClientInterface
      *
      * @api
      *
-     * @return FactFinderNgResponseTransfer
+     * @return \Generated\Shared\Transfer\FactFinderNgResponseTransfer
      */
     public function triggerSearchImport(): FactFinderNgResponseTransfer;
 }

@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * MIT License
+ * For full license information, please view the LICENSE file that was distributed with this source code.
+ */
+
 namespace SprykerEco\Client\FactFinderNg\Handler;
 
 use Elastica\Query;
@@ -12,6 +17,8 @@ class FactFinderNavigationHandler extends FactFinderHandler implements SearchHan
     /**
      * @param \Elastica\Query $query
      * @param array $requestParameters
+     *
+     * @throws \Spryker\Client\Search\Exception\SearchResponseException
      *
      * @return array
      */

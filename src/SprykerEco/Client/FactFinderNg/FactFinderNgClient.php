@@ -1,14 +1,12 @@
 <?php
 
 /**
- * This file is part of the Spryker Suite.
+ * MIT License
  * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
 namespace SprykerEco\Client\FactFinderNg;
 
-use Generated\Shared\Transfer\CartOrCheckoutEventTransfer;
-use Generated\Shared\Transfer\ClickEventTransfer;
 use Generated\Shared\Transfer\FactFinderNgResponseTransfer;
 use Spryker\Client\Kernel\AbstractClient;
 use Spryker\Client\Search\Dependency\Plugin\QueryInterface;
@@ -55,7 +53,7 @@ class FactFinderNgClient extends AbstractClient implements FactFinderNgClientInt
      *
      * @api
      *
-     * @param QueryInterface $searchQuery
+     * @param \Spryker\Client\Search\Dependency\Plugin\QueryInterface $searchQuery
      * @param array $resultFormatters
      * @param array $requestParameters
      *
@@ -71,9 +69,9 @@ class FactFinderNgClient extends AbstractClient implements FactFinderNgClientInt
      *
      * @api
      *
-     * @param CartOrCheckoutEventTransfer[] $cartOrCheckoutEventTransfers
+     * @param \Generated\Shared\Transfer\CartOrCheckoutEventTransfer[] $cartOrCheckoutEventTransfers
      *
-     * @return FactFinderNgResponseTransfer
+     * @return \Generated\Shared\Transfer\FactFinderNgResponseTransfer
      */
     public function trackCheckoutEvent(array $cartOrCheckoutEventTransfers): FactFinderNgResponseTransfer
     {
@@ -85,9 +83,9 @@ class FactFinderNgClient extends AbstractClient implements FactFinderNgClientInt
      *
      * @api
      *
-     * @param CartOrCheckoutEventTransfer[] $cartOrCheckoutEventTransfers
+     * @param \Generated\Shared\Transfer\CartOrCheckoutEventTransfer[] $cartOrCheckoutEventTransfers
      *
-     * @return FactFinderNgResponseTransfer
+     * @return \Generated\Shared\Transfer\FactFinderNgResponseTransfer
      */
     public function trackCartEvent(array $cartOrCheckoutEventTransfers): FactFinderNgResponseTransfer
     {
@@ -99,9 +97,9 @@ class FactFinderNgClient extends AbstractClient implements FactFinderNgClientInt
      *
      * @api
      *
-     * @param ClickEventTransfer[] $clickEventTransfers
+     * @param \Generated\Shared\Transfer\ClickEventTransfer[] $clickEventTransfers
      *
-     * @return FactFinderNgResponseTransfer
+     * @return \Generated\Shared\Transfer\FactFinderNgResponseTransfer
      */
     public function trackClickEvent(array $clickEventTransfers): FactFinderNgResponseTransfer
     {
@@ -113,7 +111,7 @@ class FactFinderNgClient extends AbstractClient implements FactFinderNgClientInt
      *
      * @api
      *
-     * @return FactFinderNgResponseTransfer
+     * @return \Generated\Shared\Transfer\FactFinderNgResponseTransfer
      */
     public function triggerSearchImport(): FactFinderNgResponseTransfer
     {

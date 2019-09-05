@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This file is part of the Spryker Suite.
+ * MIT License
  * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
@@ -13,9 +13,9 @@ use Psr\Http\Message\ResponseInterface;
 interface ResponseParserInterface
 {
     /**
-     * @param ResponseInterface $response
+     * @param \Psr\Http\Message\ResponseInterface $response
      *
-     * @return FactFinderNgResponseTransfer
+     * @return \Generated\Shared\Transfer\FactFinderNgResponseTransfer
      */
     public function parseResponse(ResponseInterface $response): FactFinderNgResponseTransfer;
 }

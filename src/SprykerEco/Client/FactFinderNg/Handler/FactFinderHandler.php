@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This file is part of the Spryker Suite.
+ * MIT License
  * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
@@ -22,17 +22,17 @@ use SprykerEco\Client\FactFinderNg\Parser\ResponseParserInterface;
 abstract class FactFinderHandler implements SearchHandlerInterface
 {
     /**
-     * @var FactFinderNgRequestMapperInterface
+     * @var \SprykerEco\Client\FactFinderNg\Mapper\Request\FactFinderNgRequestMapperInterface
      */
     protected $requestMapper;
 
     /**
-     * @var AdapterFactoryInterface
+     * @var \SprykerEco\Client\FactFinderNg\Api\Adapter\Http\Factory\AdapterFactoryInterface
      */
     protected $adapterFactory;
 
     /**
-     * @var ResponseParserInterface
+     * @var \SprykerEco\Client\FactFinderNg\Parser\ResponseParserInterface
      */
     protected $responseParser;
 
@@ -52,18 +52,18 @@ abstract class FactFinderHandler implements SearchHandlerInterface
     protected $storeClient;
 
     /**
-     * @var FactFinderNgToUtilEncodingServiceInterface
+     * @var \SprykerEco\Client\FactFinderNg\Dependency\Service\FactFinderNgToUtilEncodingServiceInterface
      */
     protected $utilEncodingService;
 
     /**
-     * @param FactFinderNgRequestMapperInterface $factFinderNgRequestMapper
-     * @param AdapterFactoryInterface $adapterFactory
-     * @param ResponseParserInterface $responseParser
+     * @param \SprykerEco\Client\FactFinderNg\Mapper\Request\FactFinderNgRequestMapperInterface $factFinderNgRequestMapper
+     * @param \SprykerEco\Client\FactFinderNg\Api\Adapter\Http\Factory\AdapterFactoryInterface $adapterFactory
+     * @param \SprykerEco\Client\FactFinderNg\Parser\ResponseParserInterface $responseParser
      * @param \SprykerEco\Client\FactFinderNg\Mapper\Elastica\FactFinderToElasticaMapperInterface $factFinderToElasticaMapper
      * @param \Spryker\Client\Locale\LocaleClientInterface $localeClient
      * @param \Spryker\Client\Store\StoreClientInterface $storeClient
-     * @param FactFinderNgToUtilEncodingServiceInterface $utilEncodingService
+     * @param \SprykerEco\Client\FactFinderNg\Dependency\Service\FactFinderNgToUtilEncodingServiceInterface $utilEncodingService
      */
     public function __construct(
         FactFinderNgRequestMapperInterface $factFinderNgRequestMapper,

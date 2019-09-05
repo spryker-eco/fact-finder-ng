@@ -1,6 +1,16 @@
-environment:
-    php:
-        version: 7.1
+build:
+    environment:
+        php: '7.1'
+
+    tests:
+        override:
+            - true
+
+    nodes:
+        analysis:
+            tests:
+                override:
+                    - php-scrutinizer-run
 
 checks:
     php:

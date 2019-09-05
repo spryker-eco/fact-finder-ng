@@ -1,12 +1,15 @@
 <?php
 
 /**
- * This file is part of the Spryker Suite.
+ * MIT License
  * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
 namespace SprykerEco\Shared\FactFinderNg;
 
+/**
+ * Declares global environment configuration keys. Do not use it for other class constants.
+ */
 interface FactFinderNgConstants
 {
     public const FACT_FINDER_USERNAME = 'FACT_FINDER_NG:FACT_FINDER_USERNAME';

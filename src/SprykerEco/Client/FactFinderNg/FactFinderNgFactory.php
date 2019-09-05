@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This file is part of the Spryker Suite.
+ * MIT License
  * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
@@ -9,11 +9,16 @@ namespace SprykerEco\Client\FactFinderNg;
 
 use Elastica\ResultSet\DefaultBuilder;
 use GuzzleHttp\ClientInterface;
+use Spryker\Client\Kernel\AbstractFactory;
+use Spryker\Client\Locale\LocaleClientInterface;
+use Spryker\Client\PriceProductStorage\PriceProductStorageClientInterface;
+use Spryker\Client\ProductImageStorage\ProductImageStorageClientInterface;
+use Spryker\Client\ProductStorage\ProductStorageClientInterface;
+use Spryker\Client\Search\Model\Handler\SearchHandlerInterface;
+use Spryker\Client\Store\StoreClientInterface;
 use SprykerEco\Client\FactFinderNg\Api\Adapter\Http\Factory\AdapterFactory;
 use SprykerEco\Client\FactFinderNg\Api\Adapter\Http\Factory\AdapterFactoryInterface;
 use SprykerEco\Client\FactFinderNg\Api\Client\FactFinderNgHttpClient;
-use SprykerEco\Client\FactFinderNg\Api\RequestSender\RequestSender;
-use SprykerEco\Client\FactFinderNg\Api\RequestSender\RequestSenderInterface;
 use SprykerEco\Client\FactFinderNg\Dependency\Service\FactFinderNgToUtilEncodingServiceInterface;
 use SprykerEco\Client\FactFinderNg\EventTracker\CartEventTracker;
 use SprykerEco\Client\FactFinderNg\EventTracker\CheckoutEventTracker;
@@ -29,18 +34,8 @@ use SprykerEco\Client\FactFinderNg\Mapper\Elastica\FactFinderNgSuggestToElastica
 use SprykerEco\Client\FactFinderNg\Mapper\Elastica\FactFinderToElasticaMapperInterface;
 use SprykerEco\Client\FactFinderNg\Mapper\Request\FactFinderNgRequestMapper;
 use SprykerEco\Client\FactFinderNg\Mapper\Request\FactFinderNgRequestMapperInterface;
-use SprykerEco\Client\FactFinderNg\Mapper\Request\Track\TrackApiRequestMapper;
-use SprykerEco\Client\FactFinderNg\Mapper\Request\Track\TrackApiRequestMapperInterface;
 use SprykerEco\Client\FactFinderNg\Parser\ResponseParser;
 use SprykerEco\Client\FactFinderNg\Parser\ResponseParserInterface;
-use Spryker\Client\Kernel\AbstractFactory;
-use Spryker\Client\Locale\LocaleClientInterface;
-use Spryker\Client\PriceProductStorage\PriceProductStorageClientInterface;
-use Spryker\Client\ProductImageStorage\ProductImageStorageClientInterface;
-use Spryker\Client\ProductStorage\ProductStorageClientInterface;
-use Spryker\Client\Search\Model\Handler\SearchHandlerInterface;
-use Spryker\Client\Store\StoreClientInterface;
-use SprykerEco\Client\FactFinderNg\Processor\TrackCheckoutProcessor;
 
 /**
  * @method \SprykerEco\Client\FactFinderNg\FactFinderNgConfig getConfig()
@@ -126,7 +121,7 @@ class FactFinderNgFactory extends AbstractFactory
     }
 
     /**
-     * @return SearchHandlerInterface
+     * @return \Spryker\Client\Search\Model\Handler\SearchHandlerInterface
      */
     public function createNavigationHandler(): SearchHandlerInterface
     {
@@ -216,7 +211,7 @@ class FactFinderNgFactory extends AbstractFactory
     }
 
     /**
-     * @return ImportTriggerInterface
+     * @return \SprykerEco\Client\FactFinderNg\ImportTrigger\ImportTriggerInterface
      */
     public function createSearchImportTrigger(): ImportTriggerInterface
     {
@@ -228,7 +223,7 @@ class FactFinderNgFactory extends AbstractFactory
     }
 
     /**
-     * @return EventTrackerInterface
+     * @return \SprykerEco\Client\FactFinderNg\EventTracker\EventTrackerInterface
      */
     public function createCheckoutEventTracker(): EventTrackerInterface
     {
@@ -240,7 +235,7 @@ class FactFinderNgFactory extends AbstractFactory
     }
 
     /**
-     * @return EventTrackerInterface
+     * @return \SprykerEco\Client\FactFinderNg\EventTracker\EventTrackerInterface
      */
     public function createCartEventTracker(): EventTrackerInterface
     {
@@ -252,7 +247,7 @@ class FactFinderNgFactory extends AbstractFactory
     }
 
     /**
-     * @return EventTrackerInterface
+     * @return \SprykerEco\Client\FactFinderNg\EventTracker\EventTrackerInterface
      */
     public function createClickEventTracker(): EventTrackerInterface
     {

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This file is part of the Spryker Suite.
+ * MIT License
  * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
@@ -21,7 +21,8 @@ class FactFinderNgSearchAdapter extends FactFinderAbstractAdapter
      */
     protected function getUrl(FactFinderNgRequestTransfer $factFinderNgRequestTransfer): string
     {
-        return sprintf('%s/%s/%s/%s',
+        return sprintf(
+            '%s/%s/%s/%s',
             static::FACT_FINDER_URL_BASE,
             static::FACT_FINDER_URL_TYPE_URL,
             static::FACT_FINDER_URL_VERSION,

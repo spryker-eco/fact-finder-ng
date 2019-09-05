@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * MIT License
+ * For full license information, please view the LICENSE file that was distributed with this source code.
+ */
+
 namespace SprykerEco\Client\FactFinderNg\ImportTrigger;
 
 use Generated\Shared\Transfer\FactFinderNgResponseTransfer;
@@ -10,24 +15,24 @@ use SprykerEco\Client\FactFinderNg\Parser\ResponseParserInterface;
 class SearchImportTrigger implements ImportTriggerInterface
 {
     /**
-     * @var FactFinderNgRequestMapperInterface
+     * @var \SprykerEco\Client\FactFinderNg\Mapper\Request\FactFinderNgRequestMapperInterface
      */
     protected $requestMapper;
 
     /**
-     * @var ResponseParserInterface
+     * @var \SprykerEco\Client\FactFinderNg\Parser\ResponseParserInterface
      */
     protected $responseParser;
 
     /**
-     * @var AdapterFactoryInterface
+     * @var \SprykerEco\Client\FactFinderNg\Api\Adapter\Http\Factory\AdapterFactoryInterface
      */
     protected $adapterFactory;
 
     /**
-     * @param FactFinderNgRequestMapperInterface $requestMapper
-     * @param ResponseParserInterface $responseParser
-     * @param AdapterFactoryInterface $adapterFactory
+     * @param \SprykerEco\Client\FactFinderNg\Mapper\Request\FactFinderNgRequestMapperInterface $requestMapper
+     * @param \SprykerEco\Client\FactFinderNg\Parser\ResponseParserInterface $responseParser
+     * @param \SprykerEco\Client\FactFinderNg\Api\Adapter\Http\Factory\AdapterFactoryInterface $adapterFactory
      */
     public function __construct(
         FactFinderNgRequestMapperInterface $requestMapper,
@@ -40,7 +45,7 @@ class SearchImportTrigger implements ImportTriggerInterface
     }
 
     /**
-     * @return FactFinderNgResponseTransfer
+     * @return \Generated\Shared\Transfer\FactFinderNgResponseTransfer
      */
     public function trigger(): FactFinderNgResponseTransfer
     {

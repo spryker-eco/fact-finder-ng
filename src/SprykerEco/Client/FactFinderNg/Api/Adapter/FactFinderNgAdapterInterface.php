@@ -1,21 +1,21 @@
 <?php
 
 /**
- * This file is part of the Spryker Suite.
+ * MIT License
  * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
 namespace SprykerEco\Client\FactFinderNg\Api\Adapter;
 
+use Generated\Shared\Transfer\FactFinderNgRequestTransfer;
 use Psr\Http\Message\ResponseInterface;
-use Spryker\Shared\Kernel\Transfer\AbstractTransfer;
 
 interface FactFinderNgAdapterInterface
 {
     /**
-     * @param AbstractTransfer $factFinderNgRequestTransfer
+     * @param \Generated\Shared\Transfer\FactFinderNgRequestTransfer $factFinderNgRequestTransfer
      *
-     * @return ResponseInterface
+     * @return \Psr\Http\Message\ResponseInterface
      */
-    public function sendRequest(AbstractTransfer $factFinderNgRequestTransfer): ResponseInterface;
+    public function sendRequest(FactFinderNgRequestTransfer $factFinderNgRequestTransfer): ResponseInterface;
 }

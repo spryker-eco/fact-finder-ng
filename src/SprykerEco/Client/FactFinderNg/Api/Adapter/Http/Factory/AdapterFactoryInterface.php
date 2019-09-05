@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This file is part of the Spryker Suite.
+ * MIT License
  * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
@@ -27,22 +27,22 @@ interface AdapterFactoryInterface
     public function createFactFinderNgNavigationAdapter(): FactFinderNgAdapterInterface;
 
     /**
-     * @return FactFinderNgAdapterInterface
+     * @return \SprykerEco\Client\FactFinderNg\Api\Adapter\FactFinderNgAdapterInterface
      */
     public function createFactFinderImportSearchAdapter(): FactFinderNgAdapterInterface;
 
     /**
-     * @return FactFinderNgAdapterInterface
+     * @return \SprykerEco\Client\FactFinderNg\Api\Adapter\FactFinderNgAdapterInterface
      */
     public function createFactFinderNgTrackCheckoutApiAdapter(): FactFinderNgAdapterInterface;
 
     /**
-     * @return FactFinderNgAdapterInterface
+     * @return \SprykerEco\Client\FactFinderNg\Api\Adapter\FactFinderNgAdapterInterface
      */
     public function createFactFinderNgTrackCartApiAdapter(): FactFinderNgAdapterInterface;
 
     /**
-     * @return FactFinderNgAdapterInterface
+     * @return \SprykerEco\Client\FactFinderNg\Api\Adapter\FactFinderNgAdapterInterface
      */
     public function createFactFinderNgTrackClickApiAdapter(): FactFinderNgAdapterInterface;
 }

@@ -1,14 +1,14 @@
 <?php
 
 /**
- * This file is part of the Spryker Suite.
+ * MIT License
  * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
 namespace SprykerEco\Client\FactFinderNg;
 
-use SprykerEco\Shared\FactFinderNg\FactFinderNgConstants;
 use Spryker\Client\Kernel\AbstractBundleConfig;
+use SprykerEco\Shared\FactFinderNg\FactFinderNgConstants;
 
 class FactFinderNgConfig extends AbstractBundleConfig
 {

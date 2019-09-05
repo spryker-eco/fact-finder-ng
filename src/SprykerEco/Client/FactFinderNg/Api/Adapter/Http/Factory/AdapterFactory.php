@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This file is part of the Spryker Suite.
+ * MIT License
  * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
@@ -45,8 +45,7 @@ class AdapterFactory implements AdapterFactoryInterface
         ClientInterface $client,
         FactFinderNgToUtilEncodingServiceInterface $utilEncodingService,
         FactFinderNgConfig $config
-    )
-    {
+    ) {
         $this->config = $config;
         $this->client = $client;
         $this->utilEncodingService = $utilEncodingService;
@@ -89,7 +88,7 @@ class AdapterFactory implements AdapterFactoryInterface
     }
 
     /**
-     * @return FactFinderNgAdapterInterface
+     * @return \SprykerEco\Client\FactFinderNg\Api\Adapter\FactFinderNgAdapterInterface
      */
     public function createFactFinderImportSearchAdapter(): FactFinderNgAdapterInterface
     {
@@ -101,7 +100,7 @@ class AdapterFactory implements AdapterFactoryInterface
     }
 
     /**
-     * @return FactFinderNgAdapterInterface
+     * @return \SprykerEco\Client\FactFinderNg\Api\Adapter\FactFinderNgAdapterInterface
      */
     public function createFactFinderNgTrackCheckoutApiAdapter(): FactFinderNgAdapterInterface
     {
@@ -113,7 +112,7 @@ class AdapterFactory implements AdapterFactoryInterface
     }
 
     /**
-     * @return FactFinderNgAdapterInterface
+     * @return \SprykerEco\Client\FactFinderNg\Api\Adapter\FactFinderNgAdapterInterface
      */
     public function createFactFinderNgTrackCartApiAdapter(): FactFinderNgAdapterInterface
     {
@@ -125,7 +124,7 @@ class AdapterFactory implements AdapterFactoryInterface
     }
 
     /**
-     * @return FactFinderNgAdapterInterface
+     * @return \SprykerEco\Client\FactFinderNg\Api\Adapter\FactFinderNgAdapterInterface
      */
     public function createFactFinderNgTrackClickApiAdapter(): FactFinderNgAdapterInterface
     {
