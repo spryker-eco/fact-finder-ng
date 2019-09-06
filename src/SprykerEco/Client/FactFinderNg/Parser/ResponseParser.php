@@ -48,6 +48,7 @@ class ResponseParser implements ResponseParserInterface
             $errorTransfer->setStacktrace($responseBody[static::RESPONSE_KEY_ERROR_STACKTRACE]);
 
             $responseTransfer->setIsSuccess(false);
+            $responseTransfer->setError($errorTransfer);
 
             return $responseTransfer;
         }
