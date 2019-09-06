@@ -30,5 +30,10 @@
   },
   "config": {
     "sort-packages": true
+  },
+  "require-dev": {
+    "spryker/propel": "*",
+    "spryker/sales": "*",
+    "spryker/testify": "*"
   }
 }
