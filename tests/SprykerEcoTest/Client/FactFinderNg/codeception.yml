@@ -19,6 +19,5 @@ suites:
     modules:
       enabled:
         - Asserts
-        - \PyzTest\Shared\Testify\Helper\Environment
         - \SprykerTest\Shared\Propel\Helper\TransactionHelper
         - \SprykerTest\Shared\Sales\Helper\SalesHelper
