@@ -91,6 +91,7 @@ class FactFinderNgSearchToElasticaMapper extends AbstractFactFinderToElasticaMap
         $elasticaResponseArray = [];
         $elasticaResponseArray[static::KEY_HITS] = $this->mapElasticaHits($searchResult);
         $elasticaResponseArray[static::KEY_SORT_ITEMS] = $this->mapSortItems($searchResult);
+        $elasticaResponseArray[static::KEY_FACETS] = $this->mapFacets($searchResult);
 
         return $elasticaResponseArray;
     }
@@ -169,5 +170,15 @@ class FactFinderNgSearchToElasticaMapper extends AbstractFactFinderToElasticaMap
     protected function mapSortItems(array $searchResult): array
     {
         return $searchResult[static::KEY_SORT_ITEMS] ?? [];
+    }
+
+    /**
+     * @param array $searchResult
+     *
+     * @return array
+     */
+    protected function mapFacets(array $searchResult): array
+    {
+        return $searchResult[static::KEY_FACETS] ?? [];
     }
 }

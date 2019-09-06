@@ -59,7 +59,7 @@ class FactFinderSortedResultFormatterPlugin extends AbstractElasticsearchResultF
         $paramNames = [];
 
         foreach ($sortItems as $item) {
-            $paramNames[] = mb_strtolower($item[static::KEY_NAME]) . '_' . $item[static::KEY_ORDER];
+            $paramNames[] = sprintf('%s_%s', mb_strtolower($item[static::KEY_NAME]), $item[static::KEY_ORDER]);
         }
 
         return $paramNames;

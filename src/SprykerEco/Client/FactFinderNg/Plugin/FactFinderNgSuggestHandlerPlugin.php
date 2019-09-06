@@ -35,10 +35,6 @@ class FactFinderNgSuggestHandlerPlugin extends AbstractPlugin implements SearchH
      */
     public function isApplicable(array $requestParameters): bool
     {
-        if (isset($requestParameters['suggest']) && $requestParameters['suggest']) {
-            return true;
-        }
-
-        return false;
+        return isset($requestParameters['suggest']) && $requestParameters['suggest'];
     }
 }

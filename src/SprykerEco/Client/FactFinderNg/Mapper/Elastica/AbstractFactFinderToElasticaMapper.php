@@ -54,6 +54,8 @@ abstract class AbstractFactFinderToElasticaMapper
     public const KEY_ID_PRODUCT_IMAGE = 'id_product_image';
     public const KEY_SORT_ORDER = 'sort_order';
     public const KEY_SORT_ITEMS = 'sortItems';
+    public const KEY_FILTERS = 'filters';
+    public const KEY_FACETS = 'facets';
     public const KEY_ID_PRODUCT_IMAGE_SET_TO_PRODUCT_IMAGE = 'id_product_image_set_to_product_image';
     public const KEY_CREATED_AT = 'created_at';
     public const KEY_EXTERNAL_URL_LARGE = 'external_url_large';
