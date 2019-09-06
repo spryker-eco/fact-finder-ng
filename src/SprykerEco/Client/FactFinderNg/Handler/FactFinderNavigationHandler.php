@@ -21,6 +21,8 @@ class FactFinderNavigationHandler extends FactFinderHandler implements SearchHan
      */
     protected function executeQuery(Query $query, array $requestParameters): array
     {
+        $searchResult = [];
+
         try {
             $requestTransfer = $this->requestMapper->mapNavigationRequest($requestParameters);
             $response = $this->adapterFactory->createFactFinderNgNavigationAdapter()->sendRequest($requestTransfer);

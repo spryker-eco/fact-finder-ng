@@ -21,6 +21,8 @@ class FactFinderNgSearchHandler extends FactFinderHandler implements SearchHandl
      */
     protected function executeQuery(Query $query, array $requestParameters): array
     {
+        $searchResult = [];
+
         try {
             $requestTransfer = $this->requestMapper->mapSearchRequest($requestParameters);
             $response = $this->adapterFactory->createFactFinderNgSearchAdapter()->sendRequest($requestTransfer);

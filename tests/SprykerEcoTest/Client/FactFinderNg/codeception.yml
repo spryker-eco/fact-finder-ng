@@ -21,3 +21,4 @@ suites:
         - Asserts
         - \SprykerTest\Shared\Propel\Helper\TransactionHelper
         - \SprykerTest\Shared\Sales\Helper\SalesHelper
+        - \SprykerTest\Shared\Testify\Helper\Environment
