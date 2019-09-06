@@ -27,7 +27,7 @@ class FactFinderNgSuggestToElasticaMapper extends AbstractFactFinderToElasticaMa
     protected $elasticaDefaultBuilder;
 
     /**
-     * @var \Spryker\Client\ProductStorage\ProductStorageClientInterface
+     * @var FactFinderNgToProductStorageClientInterface
      */
     protected $productStorageClient;
 
