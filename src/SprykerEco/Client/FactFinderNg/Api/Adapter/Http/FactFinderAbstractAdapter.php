@@ -99,7 +99,6 @@ abstract class FactFinderAbstractAdapter implements FactFinderNgAdapterInterface
      */
     protected function getOptions(FactFinderNgRequestTransfer $factFinderNgRequestTransfer): array
     {
-        /** @var \Generated\Shared\Transfer\FactFinderNgRequestTransfer $factFinderNgRequestTransfer */
         $options[RequestOptions::BODY] = $this->utilEncodingService->encodeJson($factFinderNgRequestTransfer->getPayload());
         $options[RequestOptions::HEADERS] = $this->getHeaders();
         $options[RequestOptions::AUTH] = $this->getAuth();

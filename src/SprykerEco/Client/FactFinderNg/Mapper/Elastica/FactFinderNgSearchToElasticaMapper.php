@@ -13,9 +13,9 @@ use Elastica\ResultSet;
 use Elastica\ResultSet\DefaultBuilder;
 use ErrorException;
 use Generated\Shared\Transfer\StoreTransfer;
-use Spryker\Client\PriceProductStorage\PriceProductStorageClientInterface;
-use Spryker\Client\ProductImageStorage\ProductImageStorageClientInterface;
-use Spryker\Client\ProductStorage\ProductStorageClientInterface;
+use SprykerEco\Client\FactFinderNg\Dependency\Client\FactFinderNgToPriceProductStorageClientInterface;
+use SprykerEco\Client\FactFinderNg\Dependency\Client\FactFinderNgToProductImageStorageClientInterface;
+use SprykerEco\Client\FactFinderNg\Dependency\Client\FactFinderNgToProductStorageClientInterface;
 
 class FactFinderNgSearchToElasticaMapper extends AbstractFactFinderToElasticaMapper implements FactFinderToElasticaMapperInterface
 {
@@ -25,26 +25,26 @@ class FactFinderNgSearchToElasticaMapper extends AbstractFactFinderToElasticaMap
     protected $elasticaDefaultBuilder;
 
     /**
-     * @var \Spryker\Client\ProductStorage\ProductStorageClientInterface
+     * @var \SprykerEco\Client\FactFinderNg\Dependency\Client\FactFinderNgToProductStorageClientInterface
      */
     protected $productStorageClient;
 
     /**
-     * @var \Spryker\Client\ProductImageStorage\ProductImageStorageClientInterface
+     * @var \SprykerEco\Client\FactFinderNg\Dependency\Client\FactFinderNgToProductImageStorageClientInterface
      */
     protected $productImageStorageClient;
 
     /**
      * @param \Elastica\ResultSet\DefaultBuilder $elasticaDefaultBuilder
-     * @param \Spryker\Client\ProductStorage\ProductStorageClientInterface $productStorageClient
-     * @param \Spryker\Client\ProductImageStorage\ProductImageStorageClientInterface $productImageStorageClient
-     * @param \Spryker\Client\PriceProductStorage\PriceProductStorageClientInterface $priceProductStorageClient
+     * @param \SprykerEco\Client\FactFinderNg\Dependency\Client\FactFinderNgToProductStorageClientInterface $productStorageClient
+     * @param \SprykerEco\Client\FactFinderNg\Dependency\Client\FactFinderNgToProductImageStorageClientInterface $productImageStorageClient
+     * @param \SprykerEco\Client\FactFinderNg\Dependency\Client\FactFinderNgToPriceProductStorageClientInterface $priceProductStorageClient
      */
     public function __construct(
         DefaultBuilder $elasticaDefaultBuilder,
-        ProductStorageClientInterface $productStorageClient,
-        ProductImageStorageClientInterface $productImageStorageClient,
-        PriceProductStorageClientInterface $priceProductStorageClient
+        FactFinderNgToProductStorageClientInterface $productStorageClient,
+        FactFinderNgToProductImageStorageClientInterface $productImageStorageClient,
+        FactFinderNgToPriceProductStorageClientInterface $priceProductStorageClient
     ) {
         parent::__construct($priceProductStorageClient);
 

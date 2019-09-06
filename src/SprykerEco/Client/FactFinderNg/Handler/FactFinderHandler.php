@@ -9,11 +9,13 @@ namespace SprykerEco\Client\FactFinderNg\Handler;
 
 use Elastica\Query;
 use Elastica\ResultSet;
-use Spryker\Client\Locale\LocaleClientInterface;
+use Exception;
 use Spryker\Client\Search\Dependency\Plugin\QueryInterface;
+use Spryker\Client\Search\Exception\SearchResponseException;
 use Spryker\Client\Search\Model\Handler\SearchHandlerInterface;
-use Spryker\Client\Store\StoreClientInterface;
 use SprykerEco\Client\FactFinderNg\Api\Adapter\Http\Factory\AdapterFactoryInterface;
+use SprykerEco\Client\FactFinderNg\Dependency\Client\FactFinderNgToLocaleClientInterface;
+use SprykerEco\Client\FactFinderNg\Dependency\Client\FactFinderNgToStoreClientInterface;
 use SprykerEco\Client\FactFinderNg\Dependency\Service\FactFinderNgToUtilEncodingServiceInterface;
 use SprykerEco\Client\FactFinderNg\Mapper\Elastica\FactFinderToElasticaMapperInterface;
 use SprykerEco\Client\FactFinderNg\Mapper\Request\FactFinderNgRequestMapperInterface;
@@ -42,12 +44,12 @@ abstract class FactFinderHandler implements SearchHandlerInterface
     protected $factFinderToElasticaMapper;
 
     /**
-     * @var \Spryker\Client\Locale\LocaleClientInterface
+     * @var \SprykerEco\Client\FactFinderNg\Dependency\Client\FactFinderNgToLocaleClientInterface
      */
     protected $localeClient;
 
     /**
-     * @var \Spryker\Client\Store\StoreClientInterface
+     * @var \SprykerEco\Client\FactFinderNg\Dependency\Client\FactFinderNgToStoreClientInterface
      */
     protected $storeClient;
 
@@ -61,8 +63,8 @@ abstract class FactFinderHandler implements SearchHandlerInterface
      * @param \SprykerEco\Client\FactFinderNg\Api\Adapter\Http\Factory\AdapterFactoryInterface $adapterFactory
      * @param \SprykerEco\Client\FactFinderNg\Parser\ResponseParserInterface $responseParser
      * @param \SprykerEco\Client\FactFinderNg\Mapper\Elastica\FactFinderToElasticaMapperInterface $factFinderToElasticaMapper
-     * @param \Spryker\Client\Locale\LocaleClientInterface $localeClient
-     * @param \Spryker\Client\Store\StoreClientInterface $storeClient
+     * @param \SprykerEco\Client\FactFinderNg\Dependency\Client\FactFinderNgToLocaleClientInterface $localeClient
+     * @param \SprykerEco\Client\FactFinderNg\Dependency\Client\FactFinderNgToStoreClientInterface $storeClient
      * @param \SprykerEco\Client\FactFinderNg\Dependency\Service\FactFinderNgToUtilEncodingServiceInterface $utilEncodingService
      */
     public function __construct(
@@ -70,8 +72,8 @@ abstract class FactFinderHandler implements SearchHandlerInterface
         AdapterFactoryInterface $adapterFactory,
         ResponseParserInterface $responseParser,
         FactFinderToElasticaMapperInterface $factFinderToElasticaMapper,
-        LocaleClientInterface $localeClient,
-        StoreClientInterface $storeClient,
+        FactFinderNgToLocaleClientInterface $localeClient,
+        FactFinderNgToStoreClientInterface $storeClient,
         FactFinderNgToUtilEncodingServiceInterface $utilEncodingService
     ) {
         $this->requestMapper = $factFinderNgRequestMapper;
@@ -130,6 +132,25 @@ abstract class FactFinderHandler implements SearchHandlerInterface
         }
 
         return $formattedSearchResult;
+    }
+
+    /**
+     * @param \Exception $exception
+     * @param \Elastica\Query $query
+     *
+     * @throws \Spryker\Client\Search\Exception\SearchResponseException
+     *
+     * @return void
+     */
+    protected function throwSearchException(Exception $exception, Query $query): void
+    {
+        $rawQuery = $this->utilEncodingService->encodeJson($query->toArray());
+
+        throw new SearchResponseException(
+            sprintf("Search failed with the following reason: %s. Query: %s", $exception->getMessage(), $rawQuery),
+            $exception->getCode(),
+            $exception
+        );
     }
 
     /**

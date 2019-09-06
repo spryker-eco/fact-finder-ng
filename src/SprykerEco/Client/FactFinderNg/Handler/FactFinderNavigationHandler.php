@@ -9,7 +9,6 @@ namespace SprykerEco\Client\FactFinderNg\Handler;
 
 use Elastica\Query;
 use Exception;
-use Spryker\Client\Search\Exception\SearchResponseException;
 use Spryker\Client\Search\Model\Handler\SearchHandlerInterface;
 
 class FactFinderNavigationHandler extends FactFinderHandler implements SearchHandlerInterface
@@ -17,8 +16,6 @@ class FactFinderNavigationHandler extends FactFinderHandler implements SearchHan
     /**
      * @param \Elastica\Query $query
      * @param array $requestParameters
-     *
-     * @throws \Spryker\Client\Search\Exception\SearchResponseException
      *
      * @return array
      */
@@ -29,14 +26,8 @@ class FactFinderNavigationHandler extends FactFinderHandler implements SearchHan
             $response = $this->adapterFactory->createFactFinderNgNavigationAdapter()->sendRequest($requestTransfer);
             $responseTransfer = $this->responseParser->parseResponse($response);
             $searchResult = $responseTransfer->getBody();
-        } catch (Exception $e) {
-            $rawQuery = $this->utilEncodingService->encodeJson($query->toArray());
-
-            throw new SearchResponseException(
-                sprintf("Search failed with the following reason: %s. Query: %s", $e->getMessage(), $rawQuery),
-                $e->getCode(),
-                $e
-            );
+        } catch (Exception $exception) {
+            $this->throwSearchException($exception, $query);
         }
 
         return $searchResult;

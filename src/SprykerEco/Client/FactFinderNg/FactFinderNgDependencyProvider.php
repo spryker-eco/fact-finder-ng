@@ -9,6 +9,11 @@ namespace SprykerEco\Client\FactFinderNg;
 
 use Spryker\Client\Kernel\AbstractDependencyProvider;
 use Spryker\Client\Kernel\Container;
+use SprykerEco\Client\FactFinderNg\Dependency\Client\FactFinderNgToLocaleClientBridge;
+use SprykerEco\Client\FactFinderNg\Dependency\Client\FactFinderNgToPriceProductStorageClientBridge;
+use SprykerEco\Client\FactFinderNg\Dependency\Client\FactFinderNgToProductImageStorageClientBridge;
+use SprykerEco\Client\FactFinderNg\Dependency\Client\FactFinderNgToProductStorageClientBridge;
+use SprykerEco\Client\FactFinderNg\Dependency\Client\FactFinderNgToStoreClientBridge;
 use SprykerEco\Client\FactFinderNg\Dependency\Service\FactFinderNgToUtilEncodingServiceBridge;
 
 class FactFinderNgDependencyProvider extends AbstractDependencyProvider
@@ -44,9 +49,9 @@ class FactFinderNgDependencyProvider extends AbstractDependencyProvider
      */
     protected function addUtilEncodingService(Container $container): Container
     {
-        $container[static::SERVICE_UTIL_ENCODING] = function (Container $container) {
+        $container->set(static::SERVICE_UTIL_ENCODING, function (Container $container) {
             return new FactFinderNgToUtilEncodingServiceBridge($container->getLocator()->utilEncoding()->service());
-        };
+        });
 
         return $container;
     }
@@ -58,9 +63,9 @@ class FactFinderNgDependencyProvider extends AbstractDependencyProvider
      */
     protected function addProductStorageClient(Container $container): Container
     {
-        $container[static::CLIENT_PRODUCT_STORAGE] = function (Container $container) {
-            return $container->getLocator()->productStorage()->client();
-        };
+        $container->set(static::CLIENT_PRODUCT_STORAGE, function (Container $container) {
+            return new FactFinderNgToProductStorageClientBridge($container->getLocator()->productStorage()->client());
+        });
 
         return $container;
     }
@@ -72,9 +77,9 @@ class FactFinderNgDependencyProvider extends AbstractDependencyProvider
      */
     protected function addProductImageStorageClient(Container $container): Container
     {
-        $container[static::CLIENT_PRODUCT_IMAGE_STORAGE] = function (Container $container) {
-            return $container->getLocator()->productImageStorage()->client();
-        };
+        $container->set(static::CLIENT_PRODUCT_IMAGE_STORAGE, function (Container $container) {
+            return new FactFinderNgToProductImageStorageClientBridge($container->getLocator()->productImageStorage()->client());
+        });
 
         return $container;
     }
@@ -86,9 +91,9 @@ class FactFinderNgDependencyProvider extends AbstractDependencyProvider
      */
     protected function addPriceProductStorage(Container $container): Container
     {
-        $container[static::CLIENT_PRICE_PRODUCT_STORAGE] = function (Container $container) {
-            return $container->getLocator()->priceProductStorage()->client();
-        };
+        $container->set(static::CLIENT_PRICE_PRODUCT_STORAGE, function (Container $container) {
+            return new FactFinderNgToPriceProductStorageClientBridge($container->getLocator()->priceProductStorage()->client());
+        });
 
         return $container;
     }
@@ -100,9 +105,9 @@ class FactFinderNgDependencyProvider extends AbstractDependencyProvider
      */
     protected function addLocaleClient(Container $container): Container
     {
-        $container[static::CLIENT_LOCALE] = function (Container $container) {
-            return $container->getLocator()->locale()->client();
-        };
+        $container->set(static::CLIENT_LOCALE, function (Container $container) {
+            return new FactFinderNgToLocaleClientBridge($container->getLocator()->locale()->client());
+        });
 
         return $container;
     }
@@ -114,9 +119,9 @@ class FactFinderNgDependencyProvider extends AbstractDependencyProvider
      */
     protected function addStoreClient(Container $container): Container
     {
-        $container[static::CLIENT_STORE] = function (Container $container) {
-            return $container->getLocator()->store()->client();
-        };
+        $container->set(static::CLIENT_STORE, function (Container $container) {
+            return new FactFinderNgToStoreClientBridge($container->getLocator()->store()->client());
+        });
 
         return $container;
     }

@@ -14,7 +14,7 @@ interface FactFinderNgClientInterface
 {
     /**
      * Specification:
-     * - Method send request to Fact finder for getting search result.
+     * - Method sends request to Fact finder for getting search result.
      * - Request parameters will be mapped to Fact Finder search parameters.
      *
      * @api
@@ -29,7 +29,7 @@ interface FactFinderNgClientInterface
 
     /**
      * Specification:
-     * - Method send request to Fact finder for getting suggestion result.
+     * - Method sends request to Fact finder for getting suggestion result.
      * - Request parameters will be mapped to Fact Finder suggestion parameters.
      *
      * @api
@@ -44,7 +44,7 @@ interface FactFinderNgClientInterface
 
     /**
      * Specification:
-     * - Method send request to Fact finder for navigation results.
+     * - Method sends request to Fact finder for navigation results.
      * - Request parameters will be mapped to Fact Finder suggestion parameters.
      *
      * @api
@@ -59,7 +59,7 @@ interface FactFinderNgClientInterface
 
     /**
      * Specification:
-     * - Method send request to Fact finder for tracking checkout completed event.
+     * - Method sends request to Fact finder for tracking checkout completed event.
      *
      * @api
      *
@@ -71,7 +71,7 @@ interface FactFinderNgClientInterface
 
     /**
      * Specification:
-     * - Method send request to Fact finder for tracking adding to cart event.
+     * - Method sends request to Fact finder for tracking adding to cart event.
      *
      * @api
      *
@@ -83,7 +83,7 @@ interface FactFinderNgClientInterface
 
     /**
      * Specification:
-     * - Method send request to Fact finder for tracking clicking by product event.
+     * - Method sends request to Fact finder for tracking clicking by product event.
      *
      * @api
      *

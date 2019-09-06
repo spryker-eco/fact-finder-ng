@@ -8,7 +8,7 @@
 namespace SprykerEco\Client\FactFinderNg\Mapper\Elastica;
 
 use Generated\Shared\Transfer\ProductAbstractImageStorageTransfer;
-use Spryker\Client\PriceProductStorage\PriceProductStorageClientInterface;
+use SprykerEco\Client\FactFinderNg\Dependency\Client\FactFinderNgToPriceProductStorageClientInterface;
 
 abstract class AbstractFactFinderToElasticaMapper
 {
@@ -73,7 +73,7 @@ abstract class AbstractFactFinderToElasticaMapper
     public const KEY_IS_ACTIVE = 'is-active';
 
     /**
-     * @var \Spryker\Client\PriceProductStorage\PriceProductStorageClientInterface
+     * @var \SprykerEco\Client\FactFinderNg\Dependency\Client\FactFinderNgToPriceProductStorageClientInterface
      */
     protected $priceProductStorageClient;
 
@@ -88,10 +88,10 @@ abstract class AbstractFactFinderToElasticaMapper
     protected $currentStore;
 
     /**
-     * @param \Spryker\Client\PriceProductStorage\PriceProductStorageClientInterface $priceProductStorageClient
+     * @param \SprykerEco\Client\FactFinderNg\Dependency\Client\FactFinderNgToPriceProductStorageClientInterface $priceProductStorageClient
      */
     public function __construct(
-        PriceProductStorageClientInterface $priceProductStorageClient
+        FactFinderNgToPriceProductStorageClientInterface $priceProductStorageClient
     ) {
         $this->priceProductStorageClient = $priceProductStorageClient;
     }

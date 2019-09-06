@@ -37,10 +37,6 @@ class FactFinderNgNavigationHandlerPlugin extends AbstractPlugin implements Sear
      */
     public function isApplicable(array $requestParameters): bool
     {
-        if (isset($requestParameters[static::CATEGORY])) {
-            return true;
-        }
-
-        return false;
+        return isset($requestParameters[static::CATEGORY]);
     }
 }

@@ -23,7 +23,7 @@ class FactFinderNgDependencyProvider extends AbstractBundleDependencyProvider
     {
         $container = $this->addFactFinderNgClient($container);
 
-        return parent::provideCommunicationLayerDependencies($container);
+        return $container;
     }
 
     /**

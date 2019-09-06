@@ -10,15 +10,15 @@ namespace SprykerEco\Client\FactFinderNg;
 use Elastica\ResultSet\DefaultBuilder;
 use GuzzleHttp\ClientInterface;
 use Spryker\Client\Kernel\AbstractFactory;
-use Spryker\Client\Locale\LocaleClientInterface;
-use Spryker\Client\PriceProductStorage\PriceProductStorageClientInterface;
-use Spryker\Client\ProductImageStorage\ProductImageStorageClientInterface;
-use Spryker\Client\ProductStorage\ProductStorageClientInterface;
 use Spryker\Client\Search\Model\Handler\SearchHandlerInterface;
-use Spryker\Client\Store\StoreClientInterface;
 use SprykerEco\Client\FactFinderNg\Api\Adapter\Http\Factory\AdapterFactory;
 use SprykerEco\Client\FactFinderNg\Api\Adapter\Http\Factory\AdapterFactoryInterface;
 use SprykerEco\Client\FactFinderNg\Api\Client\FactFinderNgHttpClient;
+use SprykerEco\Client\FactFinderNg\Dependency\Client\FactFinderNgToLocaleClientInterface;
+use SprykerEco\Client\FactFinderNg\Dependency\Client\FactFinderNgToPriceProductStorageClientInterface;
+use SprykerEco\Client\FactFinderNg\Dependency\Client\FactFinderNgToProductImageStorageClientInterface;
+use SprykerEco\Client\FactFinderNg\Dependency\Client\FactFinderNgToProductStorageClientInterface;
+use SprykerEco\Client\FactFinderNg\Dependency\Client\FactFinderNgToStoreClientInterface;
 use SprykerEco\Client\FactFinderNg\Dependency\Service\FactFinderNgToUtilEncodingServiceInterface;
 use SprykerEco\Client\FactFinderNg\EventTracker\CartEventTracker;
 use SprykerEco\Client\FactFinderNg\EventTracker\CheckoutEventTracker;
@@ -171,41 +171,41 @@ class FactFinderNgFactory extends AbstractFactory
     }
 
     /**
-     * @return \Spryker\Client\ProductStorage\ProductStorageClientInterface
+     * @return \SprykerEco\Client\FactFinderNg\Dependency\Client\FactFinderNgToProductStorageClientInterface
      */
-    public function getProductStorageClient(): ProductStorageClientInterface
+    public function getProductStorageClient(): FactFinderNgToProductStorageClientInterface
     {
         return $this->getProvidedDependency(FactFinderNgDependencyProvider::CLIENT_PRODUCT_STORAGE);
     }
 
     /**
-     * @return \Spryker\Client\ProductImageStorage\ProductImageStorageClientInterface
+     * @return \SprykerEco\Client\FactFinderNg\Dependency\Client\FactFinderNgToProductImageStorageClientInterface
      */
-    public function getProductImageStorageClient(): ProductImageStorageClientInterface
+    public function getProductImageStorageClient(): FactFinderNgToProductImageStorageClientInterface
     {
         return $this->getProvidedDependency(FactFinderNgDependencyProvider::CLIENT_PRODUCT_IMAGE_STORAGE);
     }
 
     /**
-     * @return \Spryker\Client\PriceProductStorage\PriceProductStorageClientInterface
+     * @return \SprykerEco\Client\FactFinderNg\Dependency\Client\FactFinderNgToPriceProductStorageClientInterface
      */
-    public function getPriceProductStorageClient(): PriceProductStorageClientInterface
+    public function getPriceProductStorageClient(): FactFinderNgToPriceProductStorageClientInterface
     {
         return $this->getProvidedDependency(FactFinderNgDependencyProvider::CLIENT_PRICE_PRODUCT_STORAGE);
     }
 
     /**
-     * @return \Spryker\Client\Locale\LocaleClientInterface
+     * @return \SprykerEco\Client\FactFinderNg\Dependency\Client\FactFinderNgToLocaleClientInterface
      */
-    public function getLocaleClient(): LocaleClientInterface
+    public function getLocaleClient(): FactFinderNgToLocaleClientInterface
     {
         return $this->getProvidedDependency(FactFinderNgDependencyProvider::CLIENT_LOCALE);
     }
 
     /**
-     * @return \Spryker\Client\Store\StoreClientInterface
+     * @return \SprykerEco\Client\FactFinderNg\Dependency\Client\FactFinderNgToStoreClientInterface
      */
-    public function getStoreClient(): StoreClientInterface
+    public function getStoreClient(): FactFinderNgToStoreClientInterface
     {
         return $this->getProvidedDependency(FactFinderNgDependencyProvider::CLIENT_STORE);
     }
