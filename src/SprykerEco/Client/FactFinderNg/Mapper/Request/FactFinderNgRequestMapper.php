@@ -31,6 +31,7 @@ class FactFinderNgRequestMapper implements FactFinderNgRequestMapperInterface
     public const DEFAULT_VALUE_PAGE_PARAM = 1;
     public const DEFAULT_VALUE_QUERY_PARAM = 'query';
     public const DEFAULT_VALUE_PAGE_SIZE_PARAM = 12;
+    public const DEFAULT_VALUE_QUERY = '*';
 
     public const TYPE_OR = 'or';
     public const TYPE_AND = 'and';
@@ -267,7 +268,9 @@ class FactFinderNgRequestMapper implements FactFinderNgRequestMapperInterface
      */
     protected function addQueryParam(array $params, array $requestParameters): array
     {
-        if (isset($requestParameters[static::KEY_REQUEST_PARAMETER_Q])) {
+        $params[static::KEY_QUERY] = static::DEFAULT_VALUE_QUERY;
+
+        if (isset($requestParameters[static::KEY_REQUEST_PARAMETER_Q]) && $requestParameters[static::KEY_REQUEST_PARAMETER_Q]) {
             $params[static::KEY_QUERY] = $requestParameters[static::KEY_REQUEST_PARAMETER_Q];
         }
 
