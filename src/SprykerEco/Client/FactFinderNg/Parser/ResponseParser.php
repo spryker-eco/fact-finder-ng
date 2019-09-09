@@ -53,6 +53,7 @@ class ResponseParser implements ResponseParserInterface
             return $responseTransfer;
         }
 
+        $responseTransfer->setIsSuccess(true);
         $responseTransfer->setBody($responseBody);
 
         return $responseTransfer;
