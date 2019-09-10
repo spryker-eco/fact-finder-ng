@@ -11,8 +11,6 @@ use Spryker\Client\Search\Dependency\Plugin\QueryInterface;
 
 interface FactFinderHandlerPluginInterface
 {
-    protected const CATEGORY = 'category';
-
     /**
      * Specification:
      * - Method handles search request by provided query.
