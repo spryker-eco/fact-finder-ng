@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<transfers xmlns="spryker:transfer-01"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="spryker:transfer-01 http://static.spryker.com/transfer-01.xsd">
+
+    <transfer name="FactFinderNgRequest">
+        <property name="payload" type="array" />
+    </transfer>
+
+    <transfer name="TrackCheckoutRequest">
+        <property name="events" type="CartOrCheckoutEvent[]" singular="event" />
+    </transfer>
+
+    <transfer name="CartOrCheckoutEvent">
+        <property name="campaign" type="string" />
+        <property name="count" type="integer" />
+        <property name="id" type="string" />
+        <property name="masterId" type="string" />
+        <property name="price" type="integer" />
+        <property name="sid" type="string" />
+        <property name="title" type="string" />
+        <property name="userId" type="string" />
+    </transfer>
+
+    <transfer name="ClickEvent">
+        <property name="campaign" type="string" />
+        <property name="id" type="string" />
+        <property name="masterId" type="string" />
+        <property name="origPageSize" type="int" />
+        <property name="origPos" type="int" />
+        <property name="page" type="int" />
+        <property name="pageSize" type="int" />
+        <property name="pos" type="int" />
+        <property name="query" type="string" />
+        <property name="score" type="float" />
+        <property name="sid" type="string" />
+        <property name="title" type="string" />
+        <property name="userId" type="string" />
+    </transfer>
+
+    <transfer name="FactFinderNgResponse">
+        <property name="isSuccess" type="bool" />
+        <property name="error" type="FactFinderNgResponseError" />
+        <property name="body" type="array" />
+    </transfer>
+
+    <transfer name="FactFinderNgResponseError">
+        <property name="statusCode" type="int" />
+        <property name="error" type="string" />
+        <property name="errorDescription" type="string" />
+        <property name="stacktrace" type="string" />
+    </transfer>
+</transfers>

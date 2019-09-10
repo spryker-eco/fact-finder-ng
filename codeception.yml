@@ -1,5 +1,7 @@
+namespace: FactFinderNg
+
 include:
-    - tests/SprykerEcoTest/Zed/FactFinderNg
+    - tests/SprykerEcoTest/Client/FactFinderNg
 
 paths:
     tests: tests
@@ -20,4 +22,3 @@ coverage:
     whitelist:
         include:
             - 'src/*'
-
