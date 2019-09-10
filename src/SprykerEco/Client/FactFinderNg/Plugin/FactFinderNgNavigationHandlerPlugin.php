@@ -13,11 +13,16 @@ use Spryker\Client\Search\Dependency\Plugin\QueryInterface;
 /**
  * @method \SprykerEco\Client\FactFinderNg\FactFinderNgClientInterface getClient()
  */
-class FactFinderNgNavigationHandlerPlugin extends AbstractPlugin
+class FactFinderNgNavigationHandlerPlugin extends AbstractPlugin implements FactFinderHandlerPluginInterface
 {
     protected const CATEGORY = 'category';
 
     /**
+     * {@inheritdoc}
+     * - The method uses navigation API request for handling search query.
+     *
+     * @api
+     *
      * @param \Spryker\Client\Search\Dependency\Plugin\QueryInterface $searchQuery
      * @param array $resultFormatters
      * @param array $requestParameters
@@ -30,6 +35,10 @@ class FactFinderNgNavigationHandlerPlugin extends AbstractPlugin
     }
 
     /**
+     * {@inheritdoc}
+     *
+     * @api
+     *
      * @param array $requestParameters
      *
      * @return bool

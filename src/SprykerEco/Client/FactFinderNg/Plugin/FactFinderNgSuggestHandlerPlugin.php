@@ -13,9 +13,16 @@ use Spryker\Client\Search\Dependency\Plugin\QueryInterface;
 /**
  * @method \SprykerEco\Client\FactFinderNg\FactFinderNgClientInterface getClient()
  */
-class FactFinderNgSuggestHandlerPlugin extends AbstractPlugin
+class FactFinderNgSuggestHandlerPlugin extends AbstractPlugin implements FactFinderHandlerPluginInterface
 {
+    protected const PARAM_SUGGEST = 'suggest';
+
     /**
+     * {@inheritdoc}
+     * - The method uses suggest API request for handling search query.
+     *
+     * @api
+     *
      * @param \Spryker\Client\Search\Dependency\Plugin\QueryInterface $searchQuery
      * @param array $resultFormatters
      * @param array $requestParameters
@@ -28,12 +35,16 @@ class FactFinderNgSuggestHandlerPlugin extends AbstractPlugin
     }
 
     /**
+     * {@inheritdoc}
+     *
+     * @api
+     *
      * @param array $requestParameters
      *
      * @return bool
      */
     public function isApplicable(array $requestParameters): bool
     {
-        return isset($requestParameters['suggest']) && $requestParameters['suggest'];
+        return isset($requestParameters[static::PARAM_SUGGEST]) && $requestParameters[static::PARAM_SUGGEST];
     }
 }
