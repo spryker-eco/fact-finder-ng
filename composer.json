@@ -14,7 +14,7 @@
     "spryker/locale": "^3.2.0",
     "spryker/price-product-storage": "^4.0.0",
     "spryker/product-image-storage": "^1.10.0",
-    "spryker/product-storage": "^1.18.0",
+    "spryker/product-storage": "^1.17.0",
     "spryker/search": "^8.10.0",
     "spryker/store": "^1.12.1",
     "spryker/symfony": "^3.3.5",
