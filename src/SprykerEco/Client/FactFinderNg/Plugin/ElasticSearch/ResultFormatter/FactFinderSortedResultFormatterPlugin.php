@@ -43,7 +43,7 @@ class FactFinderSortedResultFormatterPlugin extends AbstractElasticsearchResultF
     {
         $sortSearchResultTransfer = new SortSearchResultTransfer();
         $sortSearchResultTransfer
-            ->setSortParamNames($this->mapSortParamNames($searchResult->getResponse()->getData()[static::SORT_ITEMS]))
+            ->setSortParamNames($this->mapSortParamNames($searchResult->getResponse()->getData()[static::SORT_ITEMS] ?? []))
             ->setCurrentSortParam($this->getCurrentSortParam($requestParameters));
 
         return $sortSearchResultTransfer;
