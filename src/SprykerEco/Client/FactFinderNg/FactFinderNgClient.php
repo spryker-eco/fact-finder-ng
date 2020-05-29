@@ -17,7 +17,7 @@ use Spryker\Client\Search\Dependency\Plugin\QueryInterface;
 class FactFinderNgClient extends AbstractClient implements FactFinderNgClientInterface
 {
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      *
      * @api
      *
@@ -33,7 +33,7 @@ class FactFinderNgClient extends AbstractClient implements FactFinderNgClientInt
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      *
      * @api
      *
@@ -49,7 +49,7 @@ class FactFinderNgClient extends AbstractClient implements FactFinderNgClientInt
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      *
      * @api
      *
@@ -65,7 +65,7 @@ class FactFinderNgClient extends AbstractClient implements FactFinderNgClientInt
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      *
      * @api
      *
@@ -79,7 +79,7 @@ class FactFinderNgClient extends AbstractClient implements FactFinderNgClientInt
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      *
      * @api
      *
@@ -93,7 +93,7 @@ class FactFinderNgClient extends AbstractClient implements FactFinderNgClientInt
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      *
      * @api
      *
@@ -107,7 +107,7 @@ class FactFinderNgClient extends AbstractClient implements FactFinderNgClientInt
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      *
      * @api
      *

@@ -53,9 +53,8 @@ class FactFinderNgRequestMapper implements FactFinderNgRequestMapperInterface
     /**
      * @param \SprykerEco\Client\FactFinderNg\FactFinderNgConfig $config
      */
-    public function __construct(
-        FactFinderNgConfig $config
-    ) {
+    public function __construct(FactFinderNgConfig $config)
+    {
         $this->config = $config;
     }
 

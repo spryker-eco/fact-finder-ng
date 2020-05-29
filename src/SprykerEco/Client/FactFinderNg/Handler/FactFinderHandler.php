@@ -147,7 +147,7 @@ abstract class FactFinderHandler implements SearchHandlerInterface
         $rawQuery = $this->utilEncodingService->encodeJson($query->toArray());
 
         throw new SearchResponseException(
-            sprintf("Search failed with the following reason: %s. Query: %s", $exception->getMessage(), $rawQuery),
+            sprintf('Search failed with the following reason: %s. Query: %s', $exception->getMessage(), $rawQuery),
             $exception->getCode(),
             $exception
         );
