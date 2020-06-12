@@ -18,7 +18,7 @@ class FactFinderNgNavigationHandlerPlugin extends AbstractPlugin implements Fact
     protected const CATEGORY = 'category';
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      * - The method uses navigation API request for handling search query.
      *
      * @api
@@ -35,7 +35,7 @@ class FactFinderNgNavigationHandlerPlugin extends AbstractPlugin implements Fact
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      *
      * @api
      *

@@ -18,7 +18,7 @@ class FactFinderNgSearchHandlerPlugin extends AbstractPlugin implements FactFind
     protected const PARAM_SUGGEST = 'suggest';
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      * - The method uses search API request for handling search query.
      *
      * @api
@@ -35,7 +35,7 @@ class FactFinderNgSearchHandlerPlugin extends AbstractPlugin implements FactFind
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      *
      * @api
      *

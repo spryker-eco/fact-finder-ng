@@ -22,7 +22,7 @@ class FactFinderSortedResultFormatterPlugin extends AbstractElasticsearchResultF
     public const KEY_ORDER = 'order';
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      *
      * @api
      *
