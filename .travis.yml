@@ -21,8 +21,8 @@ matrix:
         - PRODUCT_NAME=b2b-demo-shop
 
 services:
-  - postgresql
-  - redis
+  - postgresql  
+  - redis-server
   - rabbitmq
 
 addons:
