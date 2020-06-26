@@ -52,7 +52,7 @@
     </transfer>
 
     <transfer name="SortSearchResult">
-        <property name="sortParamNames" type="array" singular="sortParamName"/>
+        <property name="sortParamNames" type="array"/>
     </transfer>
 
     <transfer name="ProductAbstractImageStorage">
