@@ -103,7 +103,6 @@ class FactFinderNgSearchToElasticaMapper extends AbstractFactFinderToElasticaMap
      */
     protected function mapElasticaHits(array $searchResult): array
     {
-
         $total = $searchResult[static::KEY_TOTAL_HITS];
         $maxScore = max($searchResult[static::KEY_SCORE_FIRST_HIT], $searchResult[static::KEY_SCORE_LAST_HIT]);
         $elasticaHits = [];

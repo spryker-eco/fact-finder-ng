@@ -13,6 +13,8 @@ use SprykerEco\Shared\FactFinderNg\FactFinderNgConstants;
 class FactFinderNgConfig extends AbstractBundleConfig
 {
     /**
+     * @api
+     *
      * @return string
      */
     public function getFactFinderUsername(): string
@@ -21,6 +23,8 @@ class FactFinderNgConfig extends AbstractBundleConfig
     }
 
     /**
+     * @api
+     *
      * @return string
      */
     public function getFactFinderPassword(): string
@@ -29,6 +33,8 @@ class FactFinderNgConfig extends AbstractBundleConfig
     }
 
     /**
+     * @api
+     *
      * @return string
      */
     public function getFactFinderChannel(): string
@@ -37,6 +43,8 @@ class FactFinderNgConfig extends AbstractBundleConfig
     }
 
     /**
+     * @api
+     *
      * @return string
      */
     public function getFactFinderUrl(): string
