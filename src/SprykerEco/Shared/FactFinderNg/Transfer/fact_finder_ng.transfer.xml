@@ -13,10 +13,10 @@
 
     <transfer name="CartOrCheckoutEvent">
         <property name="campaign" type="string"/>
-        <property name="count" type="integer"/>
+        <property name="count" type="int"/>
         <property name="id" type="string"/>
         <property name="masterId" type="string"/>
-        <property name="price" type="integer"/>
+        <property name="price" type="int"/>
         <property name="sid" type="string"/>
         <property name="title" type="string"/>
         <property name="userId" type="string"/>
