@@ -1,5 +1,6 @@
 language: php
-
+os: linux
+dist: bionic
 notifications:
   email: false
 
@@ -21,30 +22,40 @@ matrix:
         - PRODUCT_NAME=b2b-demo-shop
 
 services:
-  - postgresql  
+  - postgresql
   - redis-server
   - rabbitmq
 
 addons:
-  postgresql: 9.4
-
+  postgresql: "12"
   apt:
+    sources:
+      - sourceline: ppa:chris-lea/redis-server
+      - sourceline: deb http://dl.bintray.com/rabbitmq-erlang/debian bionic erlang
+        key_url: https://github.com/rabbitmq/signing-keys/releases/download/2.0/rabbitmq-release-signing-key.asc
+      - sourceline: deb https://dl.bintray.com/rabbitmq/debian bionic main
+        key_url: https://github.com/rabbitmq/signing-keys/releases/download/2.0/rabbitmq-release-signing-key.asc
+      - sourceline: ppa:ondrej/php
     packages:
-      - graphviz
+      - redis-tools
+      - redis-server
       - rabbitmq-server
-
+      - graphviz
+      - postgresql-12
+      - postgresql-client-12
+      - postgresql-server-dev-12
   hosts:
     - zed.de.spryker.test
     - www.de.spryker.test
-
 env:
   global:
-    - APPLICATION_ENV=devtest
+    - APPLICATION_ENV=ci.pgsql
+    - SPRYKER_TESTING_ENABLED=1
     - APPLICATION_STORE=DE
     - MODULE_DIR=module
     - SHOP_DIR=current
     - MODULE_NAME=fact-finder-ng
-    - POSTGRES_PORT=5432
+    - POSTGRES_PORT=5433
 
 cache:
   directories:
@@ -56,5 +67,5 @@ before_install:
   - phpenv config-rm xdebug.ini
 
 script:
-  - git clone -b '0.3.0' --single-branch https://github.com/spryker-eco/eco-ci.git ecoci
+  - git clone -b 0.3.0 https://github.com/spryker-eco/eco-ci.git ecoci
   - ./ecoci/build/travis.sh
